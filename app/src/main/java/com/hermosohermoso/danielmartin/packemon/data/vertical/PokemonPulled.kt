@@ -37,8 +37,6 @@ fun PokemonPulled(
     val pokemonMostrar = uiState.pokemonList.getOrNull(uiState.pokemonNumberShow)
     val coroutineScope = rememberCoroutineScope()
 
-//    Para guardarlo en la bbdd
-
     if (pokemonMostrar != null) {
         Column(
             modifier = Modifier
@@ -80,7 +78,12 @@ fun PokemonPulled(
                         )
                     }
                     pokemonViewModel.sumarAlContador()
-                    navController.navigate(PackemonScreens.PokeObtenidos.route)
+                    Log.d("PokemonViewModel", uiState.pokemonNumberShow.toString())
+//                    if(uiState.pokemonNumberShow != 5){
+////                        navController.navigate(PackemonScreens.PokeObtenidos.route)
+//                    }else {
+//                        pokemonViewModel.pokemonVistos()
+//                    }
                 },
                 modifier = Modifier.padding(top = 16.dp)
             ) {
@@ -88,7 +91,6 @@ fun PokemonPulled(
             }
         }
     } else {
-//        Log.d("PokemonViewModel", "No hay más Pokémon disponibles")
-        navController.navigate(PackemonScreens.SobreAbierto.route)
+        navController.navigate(PackemonScreens.SobreAbiertoCompleto.route)
     }
 }

@@ -50,60 +50,9 @@ fun PackOpeningScreen(
                     .weight(0.5f)
             )
         }
-        Log.d("PokemonViewModel", "Recibiendo datos de la api")
-
-    } else if(uiState.pokemonNumberShow == 0) {
+    } else if(uiState.pokemonNumberShow == -1) {
         pokemonViewModel.sumarAlContador()
         navController.navigate(PackemonScreens.PokeObtenidos.route)
-    } else {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(16.dp),
-                contentPadding = PaddingValues(16.dp)
-            ) {
-                uiState.pokemonList.forEach { pokemon ->
-                    item {
-                        PokemonCardShow(pokemon = pokemon)
-                    }
-                }
-            }
-            Button(
-                onClick = {
-                    navController.navigate(PackemonScreens.Start.route)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                contentPadding = PaddingValues(18.dp, 14.dp)
-            ) {
-                Text(text = stringResource(id = R.string.ir_sobre))
-            }
-        }
     }
 }
 
-@Composable
-fun PokemonCardShow(pokemon: PokemonCard) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        AsyncImage(
-            model = pokemon.images.large,
-            contentDescription = pokemon.name,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(225.dp)
-                .padding(4.dp)
-        )
-    }
-}

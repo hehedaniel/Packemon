@@ -85,7 +85,7 @@ class PokemonViewModel(
     }
 
     fun resetearContador(){
-        _uiState.value = _uiState.value.copy(pokemonNumberShow = 0)
+        _uiState.value = _uiState.value.copy(pokemonNumberShow = -1)
     }
 
     fun guardarPokemonMostrar(pokemon: PokemonDDBB) {

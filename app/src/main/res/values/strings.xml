@@ -8,6 +8,7 @@
     <string name="poke_obtenidos">Pokemon obtenidos</string>
     <string name="pokedex">Pokedex</string>
     <string name="pokemon_datos">Datos pokemon</string>
+    <string name="sobre_abierto_completo">Sobre abierto completo</string>
 
     <!--  Botones  -->
     <string name="abrir_sobre">Abrir sobre</string>

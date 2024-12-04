@@ -32,6 +32,7 @@ import com.hermosohermoso.danielmartin.packemon.data.vertical.HomeScreen
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.HomeScreenApaisado
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpeningScreenApaisado
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokemonPulledApaisado
+import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpened
 import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpeningScreen
 import com.hermosohermoso.danielmartin.packemon.data.vertical.Pokedex
 import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonDatosScreen
@@ -79,14 +80,17 @@ fun PackemonApp(
                 composable(route = PackemonScreens.SobreAbierto.route){
                     PackOpeningScreen(navController, packemonUiState, viewModel)
                 }
+                composable(route = PackemonScreens.PokemonDatos.route){
+                    PokemonDatosScreen(navController, viewModel)
+                }
                 composable(route = PackemonScreens.PokeObtenidos.route){
                     PokemonPulled(navController, viewModel, packemonUiState, bbddViewModel)
                 }
                 composable(route = PackemonScreens.Pokedex.route){
                     Pokedex(navController, viewModel, bbddViewModel, packemonUiState)
                 }
-                composable(route = PackemonScreens.PokemonDatos.route){
-                    PokemonDatosScreen(navController, viewModel)
+                composable(route = PackemonScreens.SobreAbiertoCompleto.route){
+                    PackOpened(navController, packemonUiState)
                 }
             }
         }

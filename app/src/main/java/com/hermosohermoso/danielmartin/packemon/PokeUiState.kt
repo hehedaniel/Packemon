@@ -13,7 +13,7 @@ Esta clase debe tener las variables importantes del programa,
 data class PokeUiState(
     val isLoading: Boolean = false,
     var pokemonList: List<PokemonCard> = emptyList(),
-    val pokemonNumberShow: Int = 0,
+    val pokemonNumberShow: Int = -1,
     val pokemonVistos: Boolean = false,
     val pokemonMostrarInfo: PokemonDDBB? = null,
     val num_pokemon_fila: Int = 1
