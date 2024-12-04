@@ -14,15 +14,6 @@ private val retrofit = Retrofit.Builder()
     .baseUrl("https://api.pokemontcg.io/v2/")
     .build()
 
-//interface PokemonApiService {
-//    @GET("cards")
-//    suspend fun getPokemonList(
-//        @Query("set") set: String = "base", // Filtro por set (ajústalo según la API)
-//        @Query("page") page: String = "1",
-//        @Query("pageSize") pageSize: String = "151"
-//    ): PokemonResponse
-//}
-
 interface PokemonApiService {
     @GET("cards")
     suspend fun getPokemonByNationalPokedexNumber(
@@ -36,18 +27,3 @@ object PackemonApi{
         retrofit.create(PokemonApiService::class.java)
     }
 }
-
-//
-//object PokemonApiFactory {
-//    fun makeRetrofitService(): PokemonApiService {
-//        val json = Json {
-//            ignoreUnknownKeys = true
-//        }
-//
-//        return Retrofit.Builder()
-//            .baseUrl("https://api.pokemontcg.io/v2/")
-//            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-//            .build()
-//            .create(PokemonApiService::class.java)
-//    }
-//}

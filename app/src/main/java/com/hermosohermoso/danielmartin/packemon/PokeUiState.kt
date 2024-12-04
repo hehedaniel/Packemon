@@ -11,13 +11,8 @@ Esta clase debe tener las variables importantes del programa,
   el precio del dessert actual
 */
 data class PokeUiState(
-//    val genSeleccionada: Int, // Generación seleccionada
-//    val pokeSeleccionado: Pokemon // Pokémon seleccionado
-
-//    De joseca
     val isLoading: Boolean = false,
     var pokemonList: List<PokemonCard> = emptyList(),
-//    val pokeListShow: List<PokemonCard> = emptyList(),
     val pokemonNumberShow: Int = 0,
     val pokemonMostra: Boolean = false
     )

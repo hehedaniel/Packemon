@@ -27,9 +27,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.hermosohermoso.danielmartin.packemon.data.HomeScreen
-import com.hermosohermoso.danielmartin.packemon.data.PackOpeningScreen
-import com.hermosohermoso.danielmartin.packemon.data.PokemonPulled
+import com.hermosohermoso.danielmartin.packemon.data.vertical.HomeScreen
+import com.hermosohermoso.danielmartin.packemon.data.apaisado.HomeScreenApaisado
+import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpeningScreenApaisado
+import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokemonPulledApaisado
+import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpeningScreen
+import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonPulled
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 
@@ -40,7 +43,6 @@ fun PackemonApp(
     modifier: Modifier = Modifier
 ){
     val viewModel: PokemonViewModel = viewModel()
-    val backStackEntry by navController.currentBackStackEntryAsState()
     val packemonUiState by viewModel.uiState.collectAsState()
 
     Scaffold(
@@ -57,14 +59,26 @@ fun PackemonApp(
             startDestination = PackemonScreens.Start.route,
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable(route = PackemonScreens.Start.route){
-                HomeScreen(navController, packemonUiState, viewModel)
-            }
-            composable(route = PackemonScreens.SobreAbierto.route){
-                PackOpeningScreen(navController, packemonUiState, viewModel)
-            }
-            composable(route = PackemonScreens.PokeObtenidos.route){
-                PokemonPulled(navController, viewModel, packemonUiState)
+            if (windowSize == WindowWidthSizeClass.Expanded) {
+                composable(route = PackemonScreens.Start.route){
+                    HomeScreenApaisado(navController, packemonUiState, viewModel)
+                }
+                composable(route = PackemonScreens.SobreAbierto.route){
+                    PackOpeningScreenApaisado(navController, packemonUiState, viewModel)
+                }
+                composable(route = PackemonScreens.PokeObtenidos.route){
+                    PokemonPulledApaisado(navController, viewModel, packemonUiState)
+                }
+            }else {
+                composable(route = PackemonScreens.Start.route){
+                    HomeScreen(navController, packemonUiState, viewModel)
+                }
+                composable(route = PackemonScreens.SobreAbierto.route){
+                    PackOpeningScreen(navController, packemonUiState, viewModel)
+                }
+                composable(route = PackemonScreens.PokeObtenidos.route){
+                    PokemonPulled(navController, viewModel, packemonUiState)
+                }
             }
         }
     }
@@ -92,10 +106,6 @@ fun PokeAppTopBar(
                 )
             }
         },
-//        colors = TopAppBarDefaults.mediumTopAppBarColors(
-//            containerColor = MaterialTheme.colorScheme.primary,
-//            titleContentColor = MaterialTheme.colorScheme.onPrimary
-//        ),
         modifier = modifier,
         navigationIcon = {
             if (canNavigateBack) {
