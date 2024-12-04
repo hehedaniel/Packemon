@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Packemon</string>
+    <string name="back_button">Back</string>
+
+    <!--  Pantallas  -->
+    <string name="datos_pokemon">Pokemon datos</string>
+    <string name="sobre_abierto">Sobre abierto</string>
+    <string name="poke_obtenidos">Pokemon obtenidos</string>
+
+    <!--  Botones  -->
+    <string name="abrir_sobre">Abrir sobre</string>
+    <string name="ir_pokedex">Ir a pokedex</string>
+    <string name="ir_sobre">Ir a abrir sobre</string>
+
+
+
+</resources>
