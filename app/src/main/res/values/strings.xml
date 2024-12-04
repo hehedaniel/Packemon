@@ -6,6 +6,8 @@
     <string name="datos_pokemon">Pokemon datos</string>
     <string name="sobre_abierto">Sobre abierto</string>
     <string name="poke_obtenidos">Pokemon obtenidos</string>
+    <string name="pokedex">Pokedex</string>
+    <string name="pokemon_datos">Datos pokemon</string>
 
     <!--  Botones  -->
     <string name="abrir_sobre">Abrir sobre</string>

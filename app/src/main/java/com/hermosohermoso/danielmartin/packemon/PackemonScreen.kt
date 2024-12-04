@@ -32,6 +32,8 @@ import com.hermosohermoso.danielmartin.packemon.data.apaisado.HomeScreenApaisado
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpeningScreenApaisado
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokemonPulledApaisado
 import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpeningScreen
+import com.hermosohermoso.danielmartin.packemon.data.vertical.Pokedex
+import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonDatosScreen
 import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonPulled
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
@@ -78,6 +80,12 @@ fun PackemonApp(
                 }
                 composable(route = PackemonScreens.PokeObtenidos.route){
                     PokemonPulled(navController, viewModel, packemonUiState)
+                }
+                composable(route = PackemonScreens.Pokedex.route){
+                    Pokedex(navController, viewModel)
+                }
+                composable(route = PackemonScreens.PokemonDatos.route){
+                    PokemonDatosScreen(navController, viewModel)
                 }
             }
         }

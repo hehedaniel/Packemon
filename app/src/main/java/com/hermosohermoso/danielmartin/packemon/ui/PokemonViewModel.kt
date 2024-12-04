@@ -64,4 +64,13 @@ class PokemonViewModel : ViewModel() {
         _uiState.value = _uiState.value.copy(pokemonNumberShow = _uiState.value.pokemonNumberShow + 1)
     }
 
+    fun guardarPokemonMostrar(pokemon: PokemonCard) {
+        _uiState.value = _uiState.value.copy(pokemonMostrarInfo = pokemon)
+    }
+
+    fun obtenerPokemonMostrar(): PokemonCard? {
+        return _uiState.value.pokemonMostrarInfo
+    }
+
+
 }

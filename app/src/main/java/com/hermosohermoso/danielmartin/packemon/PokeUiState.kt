@@ -1,7 +1,6 @@
 package com.hermosohermoso.danielmartin.packemon;
 
 import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
-import com.hermosohermoso.danielmartin.packemon.model.Pokemon
 
 /*
 Esta clase debe tener las variables importantes del programa,
@@ -14,6 +13,6 @@ data class PokeUiState(
     val isLoading: Boolean = false,
     var pokemonList: List<PokemonCard> = emptyList(),
     val pokemonNumberShow: Int = 0,
-    val pokemonMostra: Boolean = false
-    )
+    val pokemonMostrarInfo: PokemonCard? = null
+)
 
