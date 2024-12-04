@@ -16,7 +16,8 @@ data class PokemonCard(
     val nationalPokedexNumbers: List<Int>?,
     val types: List<String>?,
     val images: CardImages,
-    val attacks: List<Attack>
+    val attacks: List<Attack>,
+    val set: SetInfo
 )
 
 @Serializable
@@ -30,4 +31,18 @@ data class Attack(
     val name: String,
     val damage: String,
     val text: String
+)
+@Serializable
+data class SetInfo(
+    val id: String,
+    val name: String,
+    val series: String,
+    val releaseDate: String,
+    val images: SetImages
+)
+
+@Serializable
+data class SetImages(
+    val symbol: String,
+    val logo: String
 )

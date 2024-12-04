@@ -27,6 +27,8 @@ import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.api.Attack
 import com.hermosohermoso.danielmartin.packemon.api.CardImages
 import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
+import com.hermosohermoso.danielmartin.packemon.api.SetImages
+import com.hermosohermoso.danielmartin.packemon.api.SetInfo
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 
@@ -91,515 +93,114 @@ fun mostrarPokemonItem(
 
 
 val pokemonList = listOf(
-    PokemonCard(
-        id = "dp3-1",
-        name = "Ampharos",
-        nationalPokedexNumbers = listOf(181),
-        types = listOf("Lightning"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/1.png",
-            large = "https://images.pokemontcg.io/dp3/1_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Cluster Bolt",
-                damage = "70",
-                text = "You may discard all Lightning Energy attached to Ampharos..."
+            PokemonCard(
+                id = "dp3-1",
+                name = "Ampharos",
+                nationalPokedexNumbers = listOf(181),
+                types = listOf("Lightning"),
+                images = CardImages(
+                    small = "https://images.pokemontcg.io/dp3/1.png",
+                    large = "https://images.pokemontcg.io/dp3/1_hires.png"
+                ),
+                attacks = listOf(
+                    Attack(
+                        name = "Cluster Bolt",
+                        damage = "70",
+                        text = "You may discard all Lightning Energy attached to Ampharos..."
+                    )
+                ),
+                set = SetInfo(
+                    id = "dp3",
+                    name = "Diamond & Pearl",
+                    series = "Diamond & Pearl",
+                    releaseDate = "2007/05/01",
+                    images = SetImages(
+                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
+                        logo = "https://images.pokemontcg.io/dp3/logo.png"
+                    )
+                )
+            ),
+            PokemonCard(
+                id = "dp3-2",
+                name = "Blastoise",
+                nationalPokedexNumbers = listOf(9),
+                types = listOf("Water"),
+                images = CardImages(
+                    small = "https://images.pokemontcg.io/dp3/2.png",
+                    large = "https://images.pokemontcg.io/dp3/2_hires.png"
+                ),
+                attacks = listOf(
+                    Attack(
+                        name = "Hydro Pump",
+                        damage = "60",
+                        text = "Discard 1 Water Energy attached to Blastoise."
+                    )
+                ),
+                set = SetInfo(
+                    id = "dp3",
+                    name = "Diamond & Pearl",
+                    series = "Diamond & Pearl",
+                    releaseDate = "2007/05/01",
+                    images = SetImages(
+                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
+                        logo = "https://images.pokemontcg.io/dp3/logo.png"
+                    )
+                )
+            ),
+            PokemonCard(
+                id = "dp3-3",
+                name = "Charizard",
+                nationalPokedexNumbers = listOf(6),
+                types = listOf("Fire"),
+                images = CardImages(
+                    small = "https://images.pokemontcg.io/dp3/3.png",
+                    large = "https://images.pokemontcg.io/dp3/3_hires.png"
+                ),
+                attacks = listOf(
+                    Attack(
+                        name = "Fire Spin",
+                        damage = "100",
+                        text = "Discard 2 Fire Energy attached to Charizard."
+                    )
+                ),
+                set = SetInfo(
+                    id = "dp3",
+                    name = "Diamond & Pearl",
+                    series = "Diamond & Pearl",
+                    releaseDate = "2007/05/01",
+                    images = SetImages(
+                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
+                        logo = "https://images.pokemontcg.io/dp3/logo.png"
+                    )
+                )
+            ),
+            PokemonCard(
+                id = "dp3-4",
+                name = "Pikachu",
+                nationalPokedexNumbers = listOf(25),
+                types = listOf("Electric"),
+                images = CardImages(
+                    small = "https://images.pokemontcg.io/dp3/4.png",
+                    large = "https://images.pokemontcg.io/dp3/4_hires.png"
+                ),
+                attacks = listOf(
+                    Attack(
+                        name = "Thunderbolt",
+                        damage = "50",
+                        text = "Discard all Lightning Energy attached to Pikachu."
+                    )
+                ),
+                set = SetInfo(
+                    id = "dp3",
+                    name = "Diamond & Pearl",
+                    series = "Diamond & Pearl",
+                    releaseDate = "2007/05/01",
+                    images = SetImages(
+                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
+                        logo = "https://images.pokemontcg.io/dp3/logo.png"
+                    )
+                )
             )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-2",
-        name = "Blastoise",
-        nationalPokedexNumbers = listOf(9),
-        types = listOf("Water"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/2.png",
-            large = "https://images.pokemontcg.io/dp3/2_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Hydro Pump",
-                damage = "60",
-                text = "Discard 1 Water Energy attached to Blastoise."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-3",
-        name = "Charizard",
-        nationalPokedexNumbers = listOf(6),
-        types = listOf("Fire"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/3.png",
-            large = "https://images.pokemontcg.io/dp3/3_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Fire Spin",
-                damage = "100",
-                text = "Discard 2 Fire Energy attached to Charizard."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-4",
-        name = "Pikachu",
-        nationalPokedexNumbers = listOf(25),
-        types = listOf("Electric"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/4.png",
-            large = "https://images.pokemontcg.io/dp3/4_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Thunderbolt",
-                damage = "50",
-                text = "Discard all Lightning Energy attached to Pikachu."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-5",
-        name = "Venusaur",
-        nationalPokedexNumbers = listOf(3),
-        types = listOf("Grass", "Poison"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/5.png",
-            large = "https://images.pokemontcg.io/dp3/5_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "SolarBeam",
-                damage = "80",
-                text = "Requires 2 Grass Energy and 1 Colorless."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-6",
-        name = "Snorlax",
-        nationalPokedexNumbers = listOf(143),
-        types = listOf("Normal"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/6.png",
-            large = "https://images.pokemontcg.io/dp3/6_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Body Slam",
-                damage = "60",
-                text = "Flip a coin. If heads, the defending Pokémon is now Paralyzed."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-7",
-        name = "Gengar",
-        nationalPokedexNumbers = listOf(94),
-        types = listOf("Ghost"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/7.png",
-            large = "https://images.pokemontcg.io/dp3/7_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Shadow Ball",
-                damage = "60",
-                text = "You may discard any number of Psychic Energy attached to Gengar."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-8",
-        name = "Alakazam",
-        nationalPokedexNumbers = listOf(65),
-        types = listOf("Psychic"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/8.png",
-            large = "https://images.pokemontcg.io/dp3/8_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Psychic",
-                damage = "50",
-                text = "This attack does 10 more damage for each Psychic Energy attached to Alakazam."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-9",
-        name = "Machamp",
-        nationalPokedexNumbers = listOf(68),
-        types = listOf("Fighting"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/9.png",
-            large = "https://images.pokemontcg.io/dp3/9_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Submission",
-                damage = "60",
-                text = "This attack does 10 damage to Machamp."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-10",
-        name = "Blissey",
-        nationalPokedexNumbers = listOf(113),
-        types = listOf("Normal"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/10.png",
-            large = "https://images.pokemontcg.io/dp3/10_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Softboiled",
-                damage = "0",
-                text = "Heal 50 damage from one of your Pokémon."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-1",
-        name = "Ampharos",
-        nationalPokedexNumbers = listOf(181),
-        types = listOf("Lightning"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/1.png",
-            large = "https://images.pokemontcg.io/dp3/1_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Cluster Bolt",
-                damage = "70",
-                text = "You may discard all Lightning Energy attached to Ampharos..."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-2",
-        name = "Blastoise",
-        nationalPokedexNumbers = listOf(9),
-        types = listOf("Water"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/2.png",
-            large = "https://images.pokemontcg.io/dp3/2_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Hydro Pump",
-                damage = "60",
-                text = "Discard 1 Water Energy attached to Blastoise."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-3",
-        name = "Charizard",
-        nationalPokedexNumbers = listOf(6),
-        types = listOf("Fire"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/3.png",
-            large = "https://images.pokemontcg.io/dp3/3_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Fire Spin",
-                damage = "100",
-                text = "Discard 2 Fire Energy attached to Charizard."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-4",
-        name = "Pikachu",
-        nationalPokedexNumbers = listOf(25),
-        types = listOf("Electric"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/4.png",
-            large = "https://images.pokemontcg.io/dp3/4_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Thunderbolt",
-                damage = "50",
-                text = "Discard all Lightning Energy attached to Pikachu."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-5",
-        name = "Venusaur",
-        nationalPokedexNumbers = listOf(3),
-        types = listOf("Grass", "Poison"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/5.png",
-            large = "https://images.pokemontcg.io/dp3/5_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "SolarBeam",
-                damage = "80",
-                text = "Requires 2 Grass Energy and 1 Colorless."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-6",
-        name = "Snorlax",
-        nationalPokedexNumbers = listOf(143),
-        types = listOf("Normal"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/6.png",
-            large = "https://images.pokemontcg.io/dp3/6_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Body Slam",
-                damage = "60",
-                text = "Flip a coin. If heads, the defending Pokémon is now Paralyzed."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-7",
-        name = "Gengar",
-        nationalPokedexNumbers = listOf(94),
-        types = listOf("Ghost"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/7.png",
-            large = "https://images.pokemontcg.io/dp3/7_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Shadow Ball",
-                damage = "60",
-                text = "You may discard any number of Psychic Energy attached to Gengar."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-8",
-        name = "Alakazam",
-        nationalPokedexNumbers = listOf(65),
-        types = listOf("Psychic"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/8.png",
-            large = "https://images.pokemontcg.io/dp3/8_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Psychic",
-                damage = "50",
-                text = "This attack does 10 more damage for each Psychic Energy attached to Alakazam."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-9",
-        name = "Machamp",
-        nationalPokedexNumbers = listOf(68),
-        types = listOf("Fighting"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/9.png",
-            large = "https://images.pokemontcg.io/dp3/9_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Submission",
-                damage = "60",
-                text = "This attack does 10 damage to Machamp."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-10",
-        name = "Blissey",
-        nationalPokedexNumbers = listOf(113),
-        types = listOf("Normal"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/10.png",
-            large = "https://images.pokemontcg.io/dp3/10_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Softboiled",
-                damage = "0",
-                text = "Heal 50 damage from one of your Pokémon."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-1",
-        name = "Ampharos",
-        nationalPokedexNumbers = listOf(181),
-        types = listOf("Lightning"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/1.png",
-            large = "https://images.pokemontcg.io/dp3/1_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Cluster Bolt",
-                damage = "70",
-                text = "You may discard all Lightning Energy attached to Ampharos..."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-2",
-        name = "Blastoise",
-        nationalPokedexNumbers = listOf(9),
-        types = listOf("Water"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/2.png",
-            large = "https://images.pokemontcg.io/dp3/2_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Hydro Pump",
-                damage = "60",
-                text = "Discard 1 Water Energy attached to Blastoise."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-3",
-        name = "Charizard",
-        nationalPokedexNumbers = listOf(6),
-        types = listOf("Fire"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/3.png",
-            large = "https://images.pokemontcg.io/dp3/3_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Fire Spin",
-                damage = "100",
-                text = "Discard 2 Fire Energy attached to Charizard."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-4",
-        name = "Pikachu",
-        nationalPokedexNumbers = listOf(25),
-        types = listOf("Electric"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/4.png",
-            large = "https://images.pokemontcg.io/dp3/4_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Thunderbolt",
-                damage = "50",
-                text = "Discard all Lightning Energy attached to Pikachu."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-5",
-        name = "Venusaur",
-        nationalPokedexNumbers = listOf(3),
-        types = listOf("Grass", "Poison"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/5.png",
-            large = "https://images.pokemontcg.io/dp3/5_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "SolarBeam",
-                damage = "80",
-                text = "Requires 2 Grass Energy and 1 Colorless."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-6",
-        name = "Snorlax",
-        nationalPokedexNumbers = listOf(143),
-        types = listOf("Normal"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/6.png",
-            large = "https://images.pokemontcg.io/dp3/6_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Body Slam",
-                damage = "60",
-                text = "Flip a coin. If heads, the defending Pokémon is now Paralyzed."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-7",
-        name = "Gengar",
-        nationalPokedexNumbers = listOf(94),
-        types = listOf("Ghost"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/7.png",
-            large = "https://images.pokemontcg.io/dp3/7_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Shadow Ball",
-                damage = "60",
-                text = "You may discard any number of Psychic Energy attached to Gengar."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-8",
-        name = "Alakazam",
-        nationalPokedexNumbers = listOf(65),
-        types = listOf("Psychic"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/8.png",
-            large = "https://images.pokemontcg.io/dp3/8_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Psychic",
-                damage = "50",
-                text = "This attack does 10 more damage for each Psychic Energy attached to Alakazam."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-9",
-        name = "Machamp",
-        nationalPokedexNumbers = listOf(68),
-        types = listOf("Fighting"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/9.png",
-            large = "https://images.pokemontcg.io/dp3/9_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Submission",
-                damage = "60",
-                text = "This attack does 10 damage to Machamp."
-            )
-        )
-    ),
-    PokemonCard(
-        id = "dp3-10",
-        name = "Blissey",
-        nationalPokedexNumbers = listOf(113),
-        types = listOf("Normal"),
-        images = CardImages(
-            small = "https://images.pokemontcg.io/dp3/10.png",
-            large = "https://images.pokemontcg.io/dp3/10_hires.png"
-        ),
-        attacks = listOf(
-            Attack(
-                name = "Softboiled",
-                damage = "0",
-                text = "Heal 50 damage from one of your Pokémon."
-            )
-        )
-    ),
+
 )
 

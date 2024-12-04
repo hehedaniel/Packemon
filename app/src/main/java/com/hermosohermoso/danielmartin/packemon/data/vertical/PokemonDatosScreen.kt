@@ -15,6 +15,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.toLowerCase
@@ -53,11 +55,6 @@ fun PokemonDatosScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = pokemonMostrar.name,
-            style = MaterialTheme.typography.displayMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
 
         // Imagen del Pokémon
         AsyncImage(
@@ -67,62 +64,33 @@ fun PokemonDatosScreen(
                 .size(500.dp)
                 .padding(bottom = 12.dp)
         )
-
-        // Imagen del tipo del Pokémon
-        Image(
-            painter = painterResource(id = obtenerDrawableTipo(
-                pokemonMostrar.types?.firstOrNull() ?: "fire")),
-            contentDescription = null,
+        // Información del set
+        Text(
+            text = pokemonMostrar.set.name,
+            style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
-                .size(120.dp)
-                .padding(bottom = 24.dp)
+                .padding(top = 12.dp, bottom = 4.dp)
         )
 
-        Log.d("Pokeataques", pokemonMostrar.attacks.toString())
-        // Información de los ataques
-//        Column(
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.spacedBy(8.dp)
-//        ) {
-//            Text(
-//                text = pokemonMostrar.attacks[0].text,
-//                style = MaterialTheme.typography.displaySmall,
-//                modifier = Modifier.padding(bottom = 8.dp)
-//            )
-//            Text(
-//                text = pokemonMostrar.attacks[1].text,
-//                style = MaterialTheme.typography.displaySmall
-//            )
-//        }
+        Text(
+            text = "Release Date: ${pokemonMostrar.set.releaseDate}",
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier
+        )
+
+        AsyncImage(
+            model = pokemonMostrar.set.images.logo,
+            contentDescription = "Set Logo",
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .size(150.dp)
+        )
+
         Button(
             onClick = { navController.navigate(PackemonScreens.Pokedex.route) },
             modifier = Modifier
-//            .align(Alignment.CenterHorizontally)
-                .padding(bottom = 24.dp)
         ) {
             Text(text = stringResource(id = R.string.ir_pokedex))
         }
-    }
-}
-
-fun obtenerDrawableTipo(tipo: String): Int {
-    return when (tipo.lowercase()) {
-        "dragon" -> R.drawable.dragon
-        "lightning" -> R.drawable.electric
-        "fairy" -> R.drawable.fairy
-        "fighting" -> R.drawable.fighting
-        "fire" -> R.drawable.fire
-        "flying" -> R.drawable.flying
-        "ghost" -> R.drawable.ghost
-        "grass" -> R.drawable.grass
-        "ground" -> R.drawable.ground
-        "ice" -> R.drawable.ice
-        "normal" -> R.drawable.normal
-        "poison" -> R.drawable.poison
-        "psychic" -> R.drawable.psychic
-        "rock" -> R.drawable.rock
-        "steel" -> R.drawable.steel
-        "water" -> R.drawable.water
-        else -> R.drawable.colorlesss
     }
 }
