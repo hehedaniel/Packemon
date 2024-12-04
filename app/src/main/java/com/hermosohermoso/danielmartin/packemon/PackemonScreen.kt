@@ -27,6 +27,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
 import com.hermosohermoso.danielmartin.packemon.data.vertical.HomeScreen
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.HomeScreenApaisado
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpeningScreenApaisado
@@ -42,6 +43,7 @@ import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 fun PackemonApp(
     windowSize: WindowWidthSizeClass,
     navController: NavHostController = rememberNavController(),
+    bbddViewModel: PackemonBbddViewModel = viewModel(factory = PackemonBbddViewModel.factory),
     modifier: Modifier = Modifier
 ){
     val viewModel: PokemonViewModel = viewModel()
@@ -53,7 +55,6 @@ fun PackemonApp(
                 canNavigateBack = navController.previousBackStackEntry != null,
                 navigateUp = { navController.navigateUp() }
             )
-
         }
     ){ paddingValues ->
         NavHost(
@@ -79,7 +80,7 @@ fun PackemonApp(
                     PackOpeningScreen(navController, packemonUiState, viewModel)
                 }
                 composable(route = PackemonScreens.PokeObtenidos.route){
-                    PokemonPulled(navController, viewModel, packemonUiState)
+                    PokemonPulled(navController, viewModel, packemonUiState, bbddViewModel)
                 }
                 composable(route = PackemonScreens.Pokedex.route){
                     Pokedex(navController, viewModel)

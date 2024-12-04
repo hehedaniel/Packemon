@@ -38,6 +38,9 @@ fun Pokedex(
     viewModel: PokemonViewModel,
     modifier: Modifier = Modifier
 ){
+
+
+
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         modifier = Modifier.fillMaxSize(),
@@ -59,7 +62,6 @@ fun Pokedex(
     Button(
         onClick = { navController.navigate(PackemonScreens.Start.route) },
         modifier = Modifier
-//            .align(Alignment.CenterHorizontally)
             .padding(bottom = 24.dp)
     ) {
         Text(text = stringResource(id = R.string.ir_sobre))
@@ -92,7 +94,7 @@ fun mostrarPokemonItem(
 }
 
 
-val pokemonList = listOf(
+val pokemonListPrueba = listOf(
             PokemonCard(
                 id = "dp3-1",
                 name = "Ampharos",
@@ -201,6 +203,5 @@ val pokemonList = listOf(
                     )
                 )
             )
-
 )
 
