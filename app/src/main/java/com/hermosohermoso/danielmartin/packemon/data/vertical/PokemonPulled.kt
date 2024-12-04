@@ -33,6 +33,7 @@ fun PokemonPulled(
     uiState: PokeUiState,
     bbddViewModel: PackemonBbddViewModel
 ) {
+
     val pokemonMostrar = uiState.pokemonList.getOrNull(uiState.pokemonNumberShow)
     val coroutineScope = rememberCoroutineScope()
 

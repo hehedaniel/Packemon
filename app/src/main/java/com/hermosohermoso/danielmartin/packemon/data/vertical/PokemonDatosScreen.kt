@@ -58,28 +58,28 @@ fun PokemonDatosScreen(
 
         // Imagen del Pokémon
         AsyncImage(
-            model = pokemonMostrar.images.large,
-            contentDescription = pokemonMostrar.name,
+            model = pokemonMostrar.pokeImgLarge,
+            contentDescription = pokemonMostrar.pokeName,
             modifier = Modifier
                 .size(500.dp)
                 .padding(bottom = 12.dp)
         )
         // Información del set
         Text(
-            text = pokemonMostrar.set.name,
+            text = pokemonMostrar.pokeSetName,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .padding(top = 12.dp, bottom = 4.dp)
         )
 
         Text(
-            text = "Release Date: ${pokemonMostrar.set.releaseDate}",
+            text = "Release Date: ${pokemonMostrar.pokeSetReleaseDate}",
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier
         )
 
         AsyncImage(
-            model = pokemonMostrar.set.images.logo,
+            model = pokemonMostrar.pokeSetLogo,
             contentDescription = "Set Logo",
             contentScale = ContentScale.FillWidth,
             modifier = Modifier

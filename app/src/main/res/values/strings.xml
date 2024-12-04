@@ -14,6 +14,9 @@
     <string name="ir_pokedex">Ir a pokedex</string>
     <string name="ir_sobre">Ir a abrir sobre</string>
 
-
-
+    <!--  Iconos preferencias  -->
+    <string name="dos">dos</string>
+    <string name="tres">tres</string>
+    <string name="cuatro">cuatro</string>
+    <string name="seis">seis</string>
 </resources>

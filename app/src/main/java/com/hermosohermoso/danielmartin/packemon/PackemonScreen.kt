@@ -44,9 +44,9 @@ fun PackemonApp(
     windowSize: WindowWidthSizeClass,
     navController: NavHostController = rememberNavController(),
     bbddViewModel: PackemonBbddViewModel = viewModel(factory = PackemonBbddViewModel.factory),
+    viewModel: PokemonViewModel = viewModel(factory = PokemonViewModel.factory),
     modifier: Modifier = Modifier
 ){
-    val viewModel: PokemonViewModel = viewModel()
     val packemonUiState by viewModel.uiState.collectAsState()
 
     Scaffold(
@@ -83,7 +83,7 @@ fun PackemonApp(
                     PokemonPulled(navController, viewModel, packemonUiState, bbddViewModel)
                 }
                 composable(route = PackemonScreens.Pokedex.route){
-                    Pokedex(navController, viewModel)
+                    Pokedex(navController, viewModel, bbddViewModel, packemonUiState)
                 }
                 composable(route = PackemonScreens.PokemonDatos.route){
                     PokemonDatosScreen(navController, viewModel)
@@ -116,15 +116,15 @@ fun PokeAppTopBar(
             }
         },
         modifier = modifier,
-        navigationIcon = {
-            if (canNavigateBack) {
-                IconButton(onClick = navigateUp) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.back_button)
-                    )
-                }
-            }
-        }
+//        navigationIcon = {
+//            if (canNavigateBack) {
+//                IconButton(onClick = navigateUp) {
+//                    Icon(
+//                        imageVector = Icons.Filled.ArrowBack,
+//                        contentDescription = stringResource(R.string.back_button)
+//                    )
+//                }
+//            }
+//        }
     )
 }

@@ -31,11 +31,12 @@ import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 fun PackOpeningScreen(
     navController: NavHostController,
     uiState: PokeUiState,
-    viewModel: PokemonViewModel
+    pokemonViewModel: PokemonViewModel
 ) {
-    Text("Pack opening screen")
+//    Text("Pack opening screen")
 
     if (uiState.isLoading) {
+        pokemonViewModel.pokemonPorVer()
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -51,46 +52,40 @@ fun PackOpeningScreen(
         }
         Log.d("PokemonViewModel", "Recibiendo datos de la api")
 
+    } else if(uiState.pokemonNumberShow == 0) {
+        pokemonViewModel.sumarAlContador()
+        navController.navigate(PackemonScreens.PokeObtenidos.route)
     } else {
-        val pokemonNumberShow = uiState.pokemonNumberShow
-
-        if (pokemonNumberShow == 0) {
-            navController.navigate(PackemonScreens.PokeObtenidos.route)
-        } else {
-//            Log.d("PokemonViewModel", "No quedan más Pokémon para mostrar")
-            Column(
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
                 modifier = Modifier
-                    .fillMaxSize()
+                    .weight(1f)
                     .padding(16.dp),
-                verticalArrangement = Arrangement.SpaceBetween
+                contentPadding = PaddingValues(16.dp)
             ) {
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(2),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(16.dp),
-                    contentPadding = PaddingValues(16.dp)
-                ) {
-                    uiState.pokemonList.forEach { pokemon ->
-                        item {
-                            PokemonCardShow(pokemon = pokemon)
-                        }
+                uiState.pokemonList.forEach { pokemon ->
+                    item {
+                        PokemonCardShow(pokemon = pokemon)
                     }
                 }
-
-                Button(
-                    onClick = {
-                        navController.navigate(PackemonScreens.Start.route)
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    contentPadding = PaddingValues(18.dp, 14.dp)
-                ) {
-                    Text(text = stringResource(id = R.string.ir_sobre))
-                }
             }
-
+            Button(
+                onClick = {
+                    navController.navigate(PackemonScreens.Start.route)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                contentPadding = PaddingValues(18.dp, 14.dp)
+            ) {
+                Text(text = stringResource(id = R.string.ir_sobre))
+            }
         }
     }
 }

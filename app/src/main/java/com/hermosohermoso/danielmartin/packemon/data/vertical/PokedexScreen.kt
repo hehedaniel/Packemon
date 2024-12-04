@@ -4,18 +4,23 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -23,12 +28,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.hermosohermoso.danielmartin.packemon.PokeUiState
 import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.api.Attack
 import com.hermosohermoso.danielmartin.packemon.api.CardImages
 import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
 import com.hermosohermoso.danielmartin.packemon.api.SetImages
 import com.hermosohermoso.danielmartin.packemon.api.SetInfo
+import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 
@@ -36,35 +43,88 @@ import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 fun Pokedex(
     navController: NavController,
     viewModel: PokemonViewModel,
+    bbddViewModel: PackemonBbddViewModel,
+    packemonUiState: PokeUiState,
     modifier: Modifier = Modifier
 ){
 
+    val pokemonList by bbddViewModel.recogerPokemons().collectAsState(emptyList())
+    //    Obtengo el numero de las preferencias de usuario
+    val pokeNumGrid = packemonUiState.num_pokemon_fila
+    var pokeGrid: Int
+    var idDrawable: Int
 
-
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(3),
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(2.dp),
-        horizontalArrangement = Arrangement.spacedBy(2.dp),
-        verticalArrangement = Arrangement.spacedBy(2.dp)
-    ) {
-        items(pokemonList) { pokemon ->
-            mostrarPokemonItem(
-                imgPokemon = pokemon.images.large,
-                nombrePokemon = pokemon.name,
-                onClick = {
-                    viewModel.guardarPokemonMostrar(pokemon)
-                    navController.navigate(PackemonScreens.PokemonDatos.route)
-                }
-            )
+    when (pokeNumGrid) {
+        1 -> {
+            pokeGrid = 2
+            idDrawable = R.drawable.dos
+        }
+        2 -> {
+            pokeGrid = 3
+            idDrawable = R.drawable.tres
+        }
+        3 -> {
+            pokeGrid = 4
+            idDrawable = R.drawable.cuatro
+        }
+        else -> {
+            pokeGrid = 6
+            idDrawable = R.drawable.sesis
         }
     }
-    Button(
-        onClick = { navController.navigate(PackemonScreens.Start.route) },
+
+    Column(
         modifier = Modifier
-            .padding(bottom = 24.dp)
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        Text(text = stringResource(id = R.string.ir_sobre))
+        // Imagen del icono alineado a la derecha
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            contentAlignment = Alignment.TopEnd
+        ) {
+            Icon(
+                painter = painterResource(id = idDrawable),
+                contentDescription = stringResource(id = R.string.dos),
+                modifier = Modifier
+                    .size(48.dp)
+                    .clickable {
+                        viewModel.cambiarNumPokemon()
+                    }
+            )
+        }
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(pokeGrid),
+            modifier = Modifier.weight(1f),
+            contentPadding = PaddingValues(2.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
+            verticalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            items(pokemonList) { pokemon ->
+                mostrarPokemonItem(
+                    imgPokemon = pokemon.pokeImgLarge,
+                    nombrePokemon = pokemon.pokeName,
+                    imgHeight = 200,
+                    onClick = {
+                        viewModel.guardarPokemonMostrar(pokemon)
+                        navController.navigate(PackemonScreens.PokemonDatos.route)
+                    }
+                )
+            }
+        }
+
+        // Botón al final de la pantalla
+        Button(
+            onClick = { navController.navigate(PackemonScreens.Start.route) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp)
+        ) {
+            Text(text = stringResource(id = R.string.ir_sobre))
+        }
     }
 }
 
@@ -72,6 +132,7 @@ fun Pokedex(
 fun mostrarPokemonItem(
     imgPokemon: String,
     nombrePokemon: String,
+    imgHeight: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -87,7 +148,7 @@ fun mostrarPokemonItem(
             contentDescription = nombrePokemon,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(225.dp)
+                .height(imgHeight.dp)
                 .padding(4.dp)
         )
     }
