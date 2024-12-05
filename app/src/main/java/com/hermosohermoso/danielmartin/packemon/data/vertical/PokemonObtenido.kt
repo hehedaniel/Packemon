@@ -1,6 +1,7 @@
 package com.hermosohermoso.danielmartin.packemon.data.vertical
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,9 +17,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -29,6 +33,7 @@ import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
 import com.hermosohermoso.danielmartin.packemon.bbdd.PokemonDDBB
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
+import com.hermosohermoso.danielmartin.packemon.mostrarImgFav
 import kotlinx.coroutines.launch
 
 @Composable
@@ -42,6 +47,7 @@ fun PokemonPulled(
     val pokemonMostrar = uiState.pokemonList.getOrNull(uiState.pokemonNumberShow)
     val coroutineScope = rememberCoroutineScope()
     val hayPokemonAnterior = if (uiState.pokemonNumberShow > 0) true else false
+    val estaEnFavorito = remember { mutableStateOf(false) }
 
     if (pokemonMostrar != null) {
         Column(
@@ -57,11 +63,45 @@ fun PokemonPulled(
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier.padding(top = 16.dp)
             )
-            Text(
-                text = pokemonMostrar.name,
-                style = MaterialTheme.typography.displayMedium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = pokemonMostrar.name,
+                    style = MaterialTheme.typography.displayMedium,
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .weight(1f) // Deja espacio para la imagen de favorito
+                )
+
+                Image(
+                    painter = painterResource(mostrarImgFav(estaEnFavorito.value)),
+                    contentDescription = "Favorito",
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clickable {
+                            // Cambiar el estado de favorito y actualizar la base de datos
+                            estaEnFavorito.value = !estaEnFavorito.value
+                            coroutineScope.launch {
+                                bbddViewModel.guardarPokemon(
+                                    PokemonDDBB(
+                                        pokeId = pokemonMostrar.id,
+                                        pokeName = pokemonMostrar.name,
+                                        natioPNBbdd = pokemonMostrar.nationalPokedexNumbers?.get(0) ?: -1,
+                                        pokeImgLarge = pokemonMostrar.images.large,
+                                        pokeSetId = pokemonMostrar.set.id,
+                                        pokeSetName = pokemonMostrar.set.name,
+                                        pokeSetSeries = pokemonMostrar.set.series,
+                                        pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
+                                        pokeSetLogo = pokemonMostrar.set.images.logo,
+                                        isFav = true
+                                    )
+                                )
+                            }
+                        }
+                )
+            }
 
             AsyncImage(
                 model = pokemonMostrar.images.large,
@@ -101,11 +141,13 @@ fun PokemonPulled(
                                     pokeSetName = pokemonMostrar.set.name,
                                     pokeSetSeries = pokemonMostrar.set.series,
                                     pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
-                                    pokeSetLogo = pokemonMostrar.set.images.logo
+                                    pokeSetLogo = pokemonMostrar.set.images.logo,
+                                    isFav = false
                                 )
                             )
                         }
                         pokemonViewModel.sumarAlContador()
+                        estaEnFavorito.value = false
                         Log.d("PokemonViewModel", uiState.pokemonNumberShow.toString())
                     },
                     modifier = Modifier.padding(start = 8.dp)

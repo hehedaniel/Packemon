@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(PokemonDDBB::class), version = 1)
+@Database(entities = arrayOf(PokemonDDBB::class), version = 2)
 abstract class PackemonDataBase: RoomDatabase(){
     abstract fun packemonDao(): PackemonDAO
 

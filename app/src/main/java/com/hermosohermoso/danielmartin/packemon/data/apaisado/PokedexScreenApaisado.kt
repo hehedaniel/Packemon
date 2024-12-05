@@ -21,6 +21,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -44,8 +47,13 @@ fun PokedexApaisado(
     packemonUiState: PokeUiState,
     modifier: Modifier = Modifier
 ){
+    var mostrarFavoritos by remember { mutableStateOf(false) }
+    val pokemonList by bbddViewModel.pokemonList.collectAsState()
+    bbddViewModel.recogerPokemons(mostrarFavoritos)
+
+
     val widthPantalla = LocalConfiguration.current.screenWidthDp.dp
-    val pokemonList by bbddViewModel.recogerPokemons().collectAsState(emptyList())
+
     //    Obtengo el numero de las preferencias de usuario
     val pokeNumGrid = packemonUiState.num_pokemon_fila
     var pokeGrid: Int

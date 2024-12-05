@@ -17,7 +17,8 @@ data class PokemonCard(
     val types: List<String>?,
     val images: CardImages,
     val attacks: List<Attack>,
-    val set: SetInfo
+    val set: SetInfo,
+    val isFav: Boolean = false
 )
 
 @Serializable

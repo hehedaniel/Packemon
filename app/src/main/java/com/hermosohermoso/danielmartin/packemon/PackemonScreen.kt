@@ -86,7 +86,7 @@ fun PackemonApp(
                     PokedexApaisado(navController, viewModel, bbddViewModel, packemonUiState)
                 } // Pokedex
                 composable(route = PackemonScreens.PokemonDatos.route){
-                    PokemonDatosScreenApaisado(navController, viewModel)
+                    PokemonDatosScreenApaisado(navController, viewModel, bbddViewModel)
                 } // Vista pokemon
             }else {
                 composable(route = PackemonScreens.Start.route){
@@ -105,7 +105,7 @@ fun PackemonApp(
                     Pokedex(navController, viewModel, bbddViewModel, packemonUiState)
                 } // Pokedex
                 composable(route = PackemonScreens.PokemonDatos.route){
-                    PokemonDatosScreen(navController, viewModel)
+                    PokemonDatosScreen(navController, viewModel, bbddViewModel)
                 } // Vista pokemon
             }
         }
@@ -150,4 +150,13 @@ fun PokeAppTopBar(
             }
         }
     )
+}
+
+//Esta función sera usada desde diferentes pantallas por lo que la dejaré aqui
+fun mostrarImgFav(estado: Boolean): Int{
+    if (estado == true) {
+        return R.drawable.favoritomarcado
+    } else {
+        return R.drawable.favorito
+    }
 }

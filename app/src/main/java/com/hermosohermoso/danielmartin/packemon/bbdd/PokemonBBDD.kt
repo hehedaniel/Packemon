@@ -23,7 +23,9 @@ data class PokemonDDBB(
     @ColumnInfo(name = "pokeSetReleaseDate")
     val pokeSetReleaseDate: String,
     @ColumnInfo(name = "pokeSetLogo")
-    val pokeSetLogo: String
+    val pokeSetLogo: String,
+    @ColumnInfo(name = "fav")
+    val isFav: Boolean
 
 //    @ColumnInfo
 //    val pokeAttack1: String,

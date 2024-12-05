@@ -12,6 +12,12 @@ interface PackemonDAO{
    @Query("SELECT * FROM Pokemon")
    fun recogerPokemons(): Flow<List<PokemonDDBB>>
 
-   @Insert(onConflict = OnConflictStrategy.REPLACE)
+   @Query("SELECT * FROM Pokemon WHERE fav = 1")
+   fun recogerPokemonsFav(): Flow<List<PokemonDDBB>>
+
+   @Insert(onConflict = OnConflictStrategy.IGNORE)
    suspend fun guardarPokemon(pokemonCard: PokemonDDBB)
+
+   @Query("UPDATE Pokemon SET fav = :isFav WHERE pokeId = :pokeId")
+   suspend fun actualizarFavorito(pokeId: String, isFav: Boolean)
 }

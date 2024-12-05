@@ -104,7 +104,8 @@ fun PokemonPulledApaisado(
                                     pokeSetName = pokemonMostrar.set.name,
                                     pokeSetSeries = pokemonMostrar.set.series,
                                     pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
-                                    pokeSetLogo = pokemonMostrar.set.images.logo
+                                    pokeSetLogo = pokemonMostrar.set.images.logo,
+                                    isFav = false
                                 )
                             )
                         }
