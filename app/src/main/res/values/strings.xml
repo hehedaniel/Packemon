@@ -20,4 +20,8 @@
     <string name="tres">tres</string>
     <string name="cuatro">cuatro</string>
     <string name="seis">seis</string>
+
+
+    <string name="poke_capturado">Pokemon capturado</string>
+
 </resources>

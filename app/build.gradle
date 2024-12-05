@@ -60,7 +60,8 @@ dependencies {
 
     // Async image loading
     implementation "io.coil-kt:coil-compose:2.4.0"
-
+    // Para el gif
+    implementation("io.coil-kt:coil-gif:1.4.0")
     // Retrofit with Kotlin Serialization
     implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
     implementation "com.squareup.retrofit2:retrofit:2.9.0"

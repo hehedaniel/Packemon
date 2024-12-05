@@ -37,7 +37,7 @@ fun PackOpeningScreenApaisado(
     uiState: PokeUiState,
     pokemonViewModel: PokemonViewModel
 ) {
-    Text("Pack opening screen")
+//    Text("Pack opening screen")
 
     if (uiState.isLoading) {
         Row(
@@ -45,9 +45,18 @@ fun PackOpeningScreenApaisado(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
-                painter = painterResource(R.drawable.sobre_abierto),
-                contentDescription = "Sobre abierto",
+//            Image(
+//                painter = painterResource(R.drawable.sobre_abierto),
+//                contentDescription = "Sobre abierto",
+//                modifier = Modifier
+//                    .weight(0.5f)
+//                    .fillMaxHeight()
+//                    .padding(start = 16.dp)
+//            )
+
+            AsyncImage(
+                model = painterResource(R.drawable.p_5_12_2024), // URL del GIF o archivo local
+                contentDescription = "Gif de apertura de pack",
                 modifier = Modifier
                     .weight(0.5f)
                     .fillMaxHeight()

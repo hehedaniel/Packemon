@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -52,7 +54,11 @@ fun HomeScreen(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(bottom = 12.dp),
-            contentPadding = PaddingValues(18.dp, 14.dp)
+            contentPadding = PaddingValues(18.dp, 14.dp),
+            colors = ButtonDefaults.buttonColors(
+                MaterialTheme.colorScheme.secondary,
+                MaterialTheme.colorScheme.onSecondary
+            ),
         ) {
             Text(text = stringResource(id = R.string.abrir_sobre))
         }
@@ -60,7 +66,11 @@ fun HomeScreen(
             onClick = { navController.navigate(PackemonScreens.Pokedex.route) },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(bottom = 24.dp)
+                .padding(bottom = 24.dp),
+            colors = ButtonDefaults.buttonColors(
+                MaterialTheme.colorScheme.primary,
+                MaterialTheme.colorScheme.onSecondary
+            ),
         ) {
             Text(text = stringResource(id = R.string.ir_pokedex))
         }

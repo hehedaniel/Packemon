@@ -1,13 +1,20 @@
 package com.hermosohermoso.danielmartin.packemon
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -36,6 +43,8 @@ import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonDatosScreen
 import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonPulled
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun PackemonApp(
@@ -113,28 +122,32 @@ fun PokeAppTopBar(
     TopAppBar(
         title = {
             Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center,
+
             ) {
                 Image(
-                    painter = painterResource(com.hermosohermoso.danielmartin.packemon.R.drawable.logopackemon),
+                    painter = painterResource(R.drawable.logopackemon),
                     contentDescription = null,
                     modifier = Modifier
                         .size(500.dp)
-                        .padding(bottom = 12.dp)
+                        .padding(bottom = 12.dp, top = 8.dp)
                 )
             }
         },
-        modifier = modifier,
-//        navigationIcon = {
-//            if (canNavigateBack) {
-//                IconButton(onClick = navigateUp) {
-//                    Icon(
-//                        imageVector = Icons.Filled.ArrowBack,
-//                        contentDescription = stringResource(R.string.back_button)
-//                    )
-//                }
-//            }
-//        }
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        ),
+        navigationIcon = {
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = stringResource(R.string.back_button)
+                    )
+                }
+            }
+        }
     )
 }

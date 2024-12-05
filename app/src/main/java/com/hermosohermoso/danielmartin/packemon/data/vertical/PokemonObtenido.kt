@@ -19,11 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 import coil.compose.AsyncImage
 import com.hermosohermoso.danielmartin.packemon.PokeUiState
+import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
 import com.hermosohermoso.danielmartin.packemon.bbdd.PokemonDDBB
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
@@ -49,7 +51,12 @@ fun PokemonPulled(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Pokémon capturado:")
+
+            Text(
+                text = stringResource(id = R.string.poke_capturado),
+                style = MaterialTheme.typography.displaySmall,
+                modifier = Modifier.padding(top = 16.dp)
+            )
             Text(
                 text = pokemonMostrar.name,
                 style = MaterialTheme.typography.displayMedium,
@@ -67,7 +74,7 @@ fun PokemonPulled(
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 12.dp, top = 16.dp),
+                    .padding(bottom = 8.dp, top = 12.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ){
