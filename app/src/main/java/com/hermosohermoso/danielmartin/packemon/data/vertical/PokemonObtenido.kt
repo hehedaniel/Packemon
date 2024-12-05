@@ -44,10 +44,10 @@ fun PokemonPulled(
     bbddViewModel: PackemonBbddViewModel
 ) {
 
-    val pokemonMostrar = uiState.pokemonList.getOrNull(uiState.pokemonNumberShow)
+    var pokemonMostrar = uiState.pokemonList.getOrNull(uiState.pokemonNumberShow)
     val coroutineScope = rememberCoroutineScope()
     val hayPokemonAnterior = if (uiState.pokemonNumberShow > 0) true else false
-    val estaEnFavorito = remember { mutableStateOf(false) }
+    val isFavState = remember { mutableStateOf(pokemonMostrar?.isFav) }
 
     if (pokemonMostrar != null) {
         Column(
@@ -76,13 +76,14 @@ fun PokemonPulled(
                 )
 
                 Image(
-                    painter = painterResource(mostrarImgFav(estaEnFavorito.value)),
+                    painter = painterResource(mostrarImgFav(isFavState.value!!)),
                     contentDescription = "Favorito",
                     modifier = Modifier
                         .size(40.dp)
                         .clickable {
-                            // Cambiar el estado de favorito y actualizar la base de datos
-                            estaEnFavorito.value = !estaEnFavorito.value
+                            val favCambiado = !isFavState.value!!
+                            isFavState.value = favCambiado
+
                             coroutineScope.launch {
                                 bbddViewModel.guardarPokemon(
                                     PokemonDDBB(
@@ -95,10 +96,12 @@ fun PokemonPulled(
                                         pokeSetSeries = pokemonMostrar.set.series,
                                         pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
                                         pokeSetLogo = pokemonMostrar.set.images.logo,
-                                        isFav = true
+                                        isFav = favCambiado
                                     )
                                 )
                             }
+
+                            pokemonMostrar.isFav = favCambiado
                         }
                 )
             }
@@ -142,12 +145,11 @@ fun PokemonPulled(
                                     pokeSetSeries = pokemonMostrar.set.series,
                                     pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
                                     pokeSetLogo = pokemonMostrar.set.images.logo,
-                                    isFav = false
+                                    isFav = pokemonMostrar.isFav
                                 )
                             )
                         }
                         pokemonViewModel.sumarAlContador()
-                        estaEnFavorito.value = false
                         Log.d("PokemonViewModel", uiState.pokemonNumberShow.toString())
                     },
                     modifier = Modifier.padding(start = 8.dp)
