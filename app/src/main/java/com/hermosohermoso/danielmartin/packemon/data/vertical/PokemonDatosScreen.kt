@@ -61,8 +61,8 @@ fun PokemonDatosScreen(
             model = pokemonMostrar.pokeImgLarge,
             contentDescription = pokemonMostrar.pokeName,
             modifier = Modifier
-                .size(500.dp)
-                .padding(bottom = 12.dp)
+                .weight(1f)
+                .padding(end = 16.dp)
         )
         // Información del set
         Text(

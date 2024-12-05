@@ -80,6 +80,10 @@ class PokemonViewModel(
         }
     }
 
+    fun restarAlContador(){
+        _uiState.value = _uiState.value.copy(pokemonNumberShow = _uiState.value.pokemonNumberShow - 1)
+    }
+
     fun sumarAlContador(){
         _uiState.value = _uiState.value.copy(pokemonNumberShow = _uiState.value.pokemonNumberShow + 1)
     }

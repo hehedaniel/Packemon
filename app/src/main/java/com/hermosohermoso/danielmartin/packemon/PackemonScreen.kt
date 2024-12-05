@@ -5,11 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -19,18 +15,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
 import com.hermosohermoso.danielmartin.packemon.data.vertical.HomeScreen
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.HomeScreenApaisado
+import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpenedApaisado
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpeningScreenApaisado
+import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokedexApaisado
+import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokemonDatosScreenApaisado
 import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokemonPulledApaisado
 import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpened
 import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpeningScreen
@@ -66,32 +63,41 @@ fun PackemonApp(
             if (windowSize == WindowWidthSizeClass.Expanded) {
                 composable(route = PackemonScreens.Start.route){
                     HomeScreenApaisado(navController, packemonUiState, viewModel)
-                }
+                } // Inicio
                 composable(route = PackemonScreens.SobreAbierto.route){
                     PackOpeningScreenApaisado(navController, packemonUiState, viewModel)
-                }
+                } // Sobre abierto
                 composable(route = PackemonScreens.PokeObtenidos.route){
-                    PokemonPulledApaisado(navController, viewModel, packemonUiState)
-                }
+                    PokemonPulledApaisado(navController, viewModel, packemonUiState, bbddViewModel)
+                } // Pokemon Obtenido
+                composable(route = PackemonScreens.SobreAbiertoCompleto.route){
+                    PackOpenedApaisado(navController, packemonUiState)
+                } // Sobre abierto completo
+                composable(route = PackemonScreens.Pokedex.route){
+                    PokedexApaisado(navController, viewModel, bbddViewModel, packemonUiState)
+                } // Pokedex
+                composable(route = PackemonScreens.PokemonDatos.route){
+                    PokemonDatosScreenApaisado(navController, viewModel)
+                } // Vista pokemon
             }else {
                 composable(route = PackemonScreens.Start.route){
                     HomeScreen(navController, packemonUiState, viewModel)
-                }
+                } // Inicio
                 composable(route = PackemonScreens.SobreAbierto.route){
                     PackOpeningScreen(navController, packemonUiState, viewModel)
-                }
-                composable(route = PackemonScreens.PokemonDatos.route){
-                    PokemonDatosScreen(navController, viewModel)
-                }
+                } // Sobre abierto
                 composable(route = PackemonScreens.PokeObtenidos.route){
                     PokemonPulled(navController, viewModel, packemonUiState, bbddViewModel)
-                }
-                composable(route = PackemonScreens.Pokedex.route){
-                    Pokedex(navController, viewModel, bbddViewModel, packemonUiState)
-                }
+                } // Pokemon Obtenido
                 composable(route = PackemonScreens.SobreAbiertoCompleto.route){
                     PackOpened(navController, packemonUiState)
-                }
+                } // Sobre abierto completo
+                composable(route = PackemonScreens.Pokedex.route){
+                    Pokedex(navController, viewModel, bbddViewModel, packemonUiState)
+                } // Pokedex
+                composable(route = PackemonScreens.PokemonDatos.route){
+                    PokemonDatosScreen(navController, viewModel)
+                } // Vista pokemon
             }
         }
     }

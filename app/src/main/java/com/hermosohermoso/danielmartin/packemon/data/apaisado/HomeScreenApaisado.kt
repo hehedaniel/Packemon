@@ -66,7 +66,7 @@ fun HomeScreenApaisado(
                 Text(text = stringResource(id = R.string.abrir_sobre))
             }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate(PackemonScreens.Pokedex.route) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 24.dp)

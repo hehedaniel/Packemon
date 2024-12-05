@@ -35,9 +35,9 @@ import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 fun PackOpeningScreenApaisado(
     navController: NavHostController,
     uiState: PokeUiState,
-    viewModel: PokemonViewModel
+    pokemonViewModel: PokemonViewModel
 ) {
-//    Text("Pack opening screen")
+    Text("Pack opening screen")
 
     if (uiState.isLoading) {
         Row(
@@ -54,48 +54,9 @@ fun PackOpeningScreenApaisado(
                     .padding(start = 16.dp)
             )
         }
-        Log.d("PokemonViewModel", "Recibiendo datos de la api")
-
-    } else {
-        val pokemonNumberShow = uiState.pokemonNumberShow
-
-        if (pokemonNumberShow == 0) {
-            navController.navigate(PackemonScreens.PokeObtenidos.route)
-        } else {
-            Log.d("PokemonViewModel", "No quedan más Pokémon para mostrar")
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    contentPadding = PaddingValues(16.dp),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    items(uiState.pokemonList) { pokemon ->
-                        PokemonCardShow(pokemon = pokemon)
-                    }
-                }
-
-                Button(
-                    onClick = {
-                        navController.navigate(PackemonScreens.Start.route)
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    contentPadding = PaddingValues(18.dp, 14.dp)
-                ) {
-                    Text(text = stringResource(id = R.string.ir_sobre))
-                }
-            }
-
-
-        }
+    } else if(uiState.pokemonNumberShow == -1) {
+        pokemonViewModel.sumarAlContador()
+        navController.navigate(PackemonScreens.PokeObtenidos.route)
     }
 }
 
