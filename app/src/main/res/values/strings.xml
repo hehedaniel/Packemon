@@ -1,25 +1,29 @@
 <resources>
-    <string name="app_name">Packemon</string>
-    <string name="back_button">Back</string>
+    <string name="app_name" translatable="false">Packemon</string>
+    <string name="back_button" translatable="false">Back</string>
 
     <!--  Pantallas  -->
-    <string name="datos_pokemon">Pokemon datos</string>
-    <string name="sobre_abierto">Sobre abierto</string>
-    <string name="poke_obtenidos">Pokemon obtenidos</string>
-    <string name="pokedex">Pokedex</string>
-    <string name="pokemon_datos">Datos pokemon</string>
-    <string name="sobre_abierto_completo">Sobre abierto completo</string>
+    <string name="datos_pokemon" translatable="false">Pokemon datos</string>
+    <string name="sobre_abierto" translatable="false">Sobre abierto</string>
+    <string name="poke_obtenidos" translatable="false">Pokemon obtenidos</string>
+    <string name="pokedex" translatable="false">Pokedex</string>
+    <string name="pokemon_datos" translatable="false">Datos pokemon</string>
+    <string name="sobre_abierto_completo" translatable="false">Sobre abierto completo</string>
 
     <!--  Botones  -->
     <string name="abrir_sobre">Abrir sobre</string>
     <string name="ir_pokedex">Ir a pokedex</string>
     <string name="ir_sobre">Ir a abrir sobre</string>
+    <string name="pokemon_favs">Mostrar favoritos</string>
+    <string name="pokedex_mostrar">Mostrar pokedex</string>
+    <string name="poke_anterior">Pokemon anterior</string>
+    <string name="poke_siguiente">Siguiente pokemon</string>
 
     <!--  Iconos preferencias  -->
-    <string name="dos">dos</string>
-    <string name="tres">tres</string>
-    <string name="cuatro">cuatro</string>
-    <string name="seis">seis</string>
+    <string name="dos" translatable="false">dos</string>
+    <string name="tres" translatable="false">tres</string>
+    <string name="cuatro" translatable="false">cuatro</string>
+    <string name="seis" translatable="false">seis</string>
 
 
     <string name="poke_capturado">Pokemon capturado</string>

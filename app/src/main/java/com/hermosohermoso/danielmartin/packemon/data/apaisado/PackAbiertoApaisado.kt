@@ -28,12 +28,16 @@ import com.hermosohermoso.danielmartin.packemon.PokeUiState
 import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
+import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 
 @Composable
 fun PackOpenedApaisado(
     navController: NavHostController,
+    pokemonViewModel: PokemonViewModel,
     uiState: PokeUiState
 ){
+    pokemonViewModel.pokemonPorVer()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -45,7 +49,7 @@ fun PackOpenedApaisado(
             modifier = Modifier
                 .weight(1f)
                 .padding(16.dp)
-                .fillMaxWidth(),
+                .fillMaxSize(),
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -74,17 +78,12 @@ fun PackOpenedApaisado(
 
 @Composable
 fun PokemonCardShowApaisado(pokemon: PokemonCard) {
-//    Log.d("PokemonCardShow", pokemon.name)
-    Box(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth(0.25f)
-    ) {
+
         AsyncImage(
             model = pokemon.images.large,
             contentDescription = pokemon.name,
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
+                .padding(8.dp)
         )
-    }
 }

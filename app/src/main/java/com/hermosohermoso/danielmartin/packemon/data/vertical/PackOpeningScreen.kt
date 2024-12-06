@@ -53,21 +53,19 @@ fun PackOpeningScreen(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Imagen de fondo
-            Image(
-                painter = painterResource(R.drawable.sobre_abierto),
-                contentDescription = "Sobre abierto",
-                modifier = Modifier
-                    .fillMaxSize()
-            )
-
-        // Spinner encima de la imagen si está cargando
         if (uiState.isLoading) {
             Box(
                 modifier = Modifier
                     .matchParentSize()
                     .wrapContentSize(Alignment.Center)
             ) {
+                Image(
+                    painter = painterResource(R.drawable.sobre_abierto),
+                    contentDescription = "Sobre abierto",
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
+
                 CircularProgressIndicator(
                     modifier = Modifier
                         .align(Alignment.Center)

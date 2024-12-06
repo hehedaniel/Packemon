@@ -49,6 +49,7 @@ fun HomeScreen(
             onClick = {
                 viewModel.resetearContador()
                 viewModel.fetchPokemons()
+                viewModel.pokemonPorVer()
                 navController.navigate(PackemonScreens.SobreAbierto.route)
             },
             modifier = Modifier

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +17,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,8 +29,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -50,6 +55,8 @@ fun Pokedex(
     packemonUiState: PokeUiState,
     modifier: Modifier = Modifier
 ){
+    val widthPantalla = LocalConfiguration.current.screenWidthDp.dp
+
     var mostrarFavoritos by remember { mutableStateOf(false) }
 
     val pokemonList by bbddViewModel.pokemonList.collectAsState()
@@ -113,7 +120,7 @@ fun Pokedex(
                 mostrarPokemonItem(
                     imgPokemon = pokemon.pokeImgLarge,
                     nombrePokemon = pokemon.pokeName,
-                    imgHeight = 200,
+                    imgHeight = widthPantalla / pokeGrid,
                     onClick = {
                         viewModel.guardarPokemonMostrar(pokemon)
                         navController.navigate(PackemonScreens.PokemonDatos.route)
@@ -122,26 +129,39 @@ fun Pokedex(
             }
         }
 
-        // Botón al final de la pantalla
-        Button(
-            onClick = { navController.navigate(PackemonScreens.Start.route) },
+        Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp)
-        ) {
-            Text(text = stringResource(id = R.string.ir_sobre))
-        }
-        Button(
-            onClick = {
-//                Actualizo el pokemon list
+                .padding(top = 8.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ){
+            Button(
+                onClick = { navController.navigate(PackemonScreens.Start.route) },
+                modifier = Modifier
+//                .fillMaxWidth()
+                    .padding(top = 16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    MaterialTheme.colorScheme.secondary,
+                    MaterialTheme.colorScheme.onSecondary
+                ),
+            ) {
+                Text(text = stringResource(id = R.string.ir_sobre))
+            }
+            Button(
+                onClick = {
                     mostrarFavoritos = !mostrarFavoritos
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-        ) {
-//            Text(text = stringResource(id = R.string.ir_sobre))
-        Text("Mostrar Favoritos")
+                },
+                modifier = Modifier
+//                .fillMaxWidth()
+                    .padding(top = 16.dp)
+            ) {
+                if(!mostrarFavoritos){
+                    Text(text = stringResource(id = R.string.pokemon_favs))
+                }else {
+                    Text(text = stringResource(id = R.string.pokedex_mostrar))
+                }
+            }
         }
     }
 }
@@ -150,7 +170,7 @@ fun Pokedex(
 fun mostrarPokemonItem(
     imgPokemon: String,
     nombrePokemon: String,
-    imgHeight: Int,
+    imgHeight: Dp,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -166,121 +186,8 @@ fun mostrarPokemonItem(
             contentDescription = nombrePokemon,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(imgHeight.dp)
+                .height(imgHeight)
                 .padding(4.dp)
         )
     }
 }
-
-
-val pokemonListPrueba = listOf(
-            PokemonCard(
-                id = "dp3-1",
-                name = "Ampharos",
-                nationalPokedexNumbers = listOf(181),
-                types = listOf("Lightning"),
-                images = CardImages(
-                    small = "https://images.pokemontcg.io/dp3/1.png",
-                    large = "https://images.pokemontcg.io/dp3/1_hires.png"
-                ),
-                attacks = listOf(
-                    Attack(
-                        name = "Cluster Bolt",
-                        damage = "70",
-                        text = "You may discard all Lightning Energy attached to Ampharos..."
-                    )
-                ),
-                set = SetInfo(
-                    id = "dp3",
-                    name = "Diamond & Pearl",
-                    series = "Diamond & Pearl",
-                    releaseDate = "2007/05/01",
-                    images = SetImages(
-                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
-                        logo = "https://images.pokemontcg.io/dp3/logo.png"
-                    )
-                )
-            ),
-            PokemonCard(
-                id = "dp3-2",
-                name = "Blastoise",
-                nationalPokedexNumbers = listOf(9),
-                types = listOf("Water"),
-                images = CardImages(
-                    small = "https://images.pokemontcg.io/dp3/2.png",
-                    large = "https://images.pokemontcg.io/dp3/2_hires.png"
-                ),
-                attacks = listOf(
-                    Attack(
-                        name = "Hydro Pump",
-                        damage = "60",
-                        text = "Discard 1 Water Energy attached to Blastoise."
-                    )
-                ),
-                set = SetInfo(
-                    id = "dp3",
-                    name = "Diamond & Pearl",
-                    series = "Diamond & Pearl",
-                    releaseDate = "2007/05/01",
-                    images = SetImages(
-                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
-                        logo = "https://images.pokemontcg.io/dp3/logo.png"
-                    )
-                )
-            ),
-            PokemonCard(
-                id = "dp3-3",
-                name = "Charizard",
-                nationalPokedexNumbers = listOf(6),
-                types = listOf("Fire"),
-                images = CardImages(
-                    small = "https://images.pokemontcg.io/dp3/3.png",
-                    large = "https://images.pokemontcg.io/dp3/3_hires.png"
-                ),
-                attacks = listOf(
-                    Attack(
-                        name = "Fire Spin",
-                        damage = "100",
-                        text = "Discard 2 Fire Energy attached to Charizard."
-                    )
-                ),
-                set = SetInfo(
-                    id = "dp3",
-                    name = "Diamond & Pearl",
-                    series = "Diamond & Pearl",
-                    releaseDate = "2007/05/01",
-                    images = SetImages(
-                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
-                        logo = "https://images.pokemontcg.io/dp3/logo.png"
-                    )
-                )
-            ),
-            PokemonCard(
-                id = "dp3-4",
-                name = "Pikachu",
-                nationalPokedexNumbers = listOf(25),
-                types = listOf("Electric"),
-                images = CardImages(
-                    small = "https://images.pokemontcg.io/dp3/4.png",
-                    large = "https://images.pokemontcg.io/dp3/4_hires.png"
-                ),
-                attacks = listOf(
-                    Attack(
-                        name = "Thunderbolt",
-                        damage = "50",
-                        text = "Discard all Lightning Energy attached to Pikachu."
-                    )
-                ),
-                set = SetInfo(
-                    id = "dp3",
-                    name = "Diamond & Pearl",
-                    series = "Diamond & Pearl",
-                    releaseDate = "2007/05/01",
-                    images = SetImages(
-                        symbol = "https://images.pokemontcg.io/dp3/symbol.png",
-                        logo = "https://images.pokemontcg.io/dp3/logo.png"
-                    )
-                )
-            )
-)
-

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,12 +48,12 @@ fun PokedexApaisado(
     packemonUiState: PokeUiState,
     modifier: Modifier = Modifier
 ){
+    val widthPantalla = LocalConfiguration.current.screenWidthDp.dp
+
     var mostrarFavoritos by remember { mutableStateOf(false) }
+
     val pokemonList by bbddViewModel.pokemonList.collectAsState()
     bbddViewModel.recogerPokemons(mostrarFavoritos)
-
-
-    val widthPantalla = LocalConfiguration.current.screenWidthDp.dp
 
     //    Obtengo el numero de las preferencias de usuario
     val pokeNumGrid = packemonUiState.num_pokemon_fila
@@ -112,7 +113,6 @@ fun PokedexApaisado(
                 mostrarPokemonItemApaisado(
                     imgPokemon = pokemon.pokeImgLarge,
                     nombrePokemon = pokemon.pokeName,
-                    imgHeight = 200,
                     onClick = {
                         viewModel.guardarPokemonMostrar(pokemon)
                         navController.navigate(PackemonScreens.PokemonDatos.route)
@@ -122,11 +122,11 @@ fun PokedexApaisado(
             }
         }
 
-        Box(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 8.dp),
-            contentAlignment = Alignment.Center
+            horizontalArrangement = Arrangement.SpaceEvenly
         ){
             Button(
                 onClick = { navController.navigate(PackemonScreens.Start.route) },
@@ -134,6 +134,19 @@ fun PokedexApaisado(
                     .padding(top = 16.dp)
             ) {
                 Text(text = stringResource(id = R.string.ir_sobre))
+            }
+            Button(
+                onClick = {
+                    mostrarFavoritos = !mostrarFavoritos
+                },
+                modifier = Modifier
+                    .padding(top = 16.dp)
+            ) {
+                if(!mostrarFavoritos){
+                    Text(text = stringResource(id = R.string.pokemon_favs))
+                }else {
+                    Text(text = stringResource(id = R.string.pokedex_mostrar))
+                }
             }
         }
     }
@@ -143,7 +156,6 @@ fun PokedexApaisado(
 fun mostrarPokemonItemApaisado(
     imgPokemon: String,
     nombrePokemon: String,
-    imgHeight: Int,
     onClick: () -> Unit,
     widthCarta: Dp,
     modifier: Modifier = Modifier

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -23,6 +25,7 @@ import com.hermosohermoso.danielmartin.packemon.PokeUiState
 import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 //Pantalla principal con:
 //  El sobre cerrado
@@ -35,6 +38,9 @@ fun HomeScreenApaisado(
     packemonUiState: PokeUiState,
     viewModel: PokemonViewModel,
 ) {
+
+    val widthPantalla = LocalConfiguration.current.screenWidthDp.dp
+
     Row(
         modifier = Modifier.fillMaxSize(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -47,21 +53,26 @@ fun HomeScreenApaisado(
             modifier = Modifier
                 .weight(0.5f)
                 .padding(start = 16.dp)
+                .fillMaxSize(0.9f)
         )
 
         // Columna con los botones a la derecha
         Column(
             modifier = Modifier
                 .weight(0.5f)
-                .padding(end = 16.dp)
+                .fillMaxWidth()
+                .padding(end = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Button(
                 onClick = {
+                    viewModel.resetearContador()
                     viewModel.fetchPokemons()
+                    viewModel.pokemonPorVer()
                     navController.navigate(PackemonScreens.SobreAbierto.route)
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .width(widthPantalla / 6)
                     .padding(bottom = 12.dp),
                 colors = ButtonDefaults.buttonColors(
                     MaterialTheme.colorScheme.secondary,
@@ -74,7 +85,7 @@ fun HomeScreenApaisado(
             Button(
                 onClick = { navController.navigate(PackemonScreens.Pokedex.route) },
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .width(widthPantalla / 7)
                     .padding(bottom = 24.dp),
                 colors = ButtonDefaults.buttonColors(
                     MaterialTheme.colorScheme.primary,

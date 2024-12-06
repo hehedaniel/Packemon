@@ -56,22 +56,21 @@ class PokemonViewModel(
 
             while (listaAux.size < 6) {
                 try {
-                    val randomNumber = (1..151).random()
+                    val randomNumber = (1..251).random()
 
                     val query = "nationalPokedexNumbers:[$randomNumber TO $randomNumber]"
                     val response = PackemonApi.retrofitService.getPokemonByNationalPokedexNumber(query)
-                    Log.d("PokemonViewModel", "${response.data.size}")
+
                     if (response.data.isNotEmpty()) {
-                        val pokemon = response.data[0]
-                        listaAux = listaAux.plus(pokemon)
+                        listaAux = listaAux.plus(response.data[(1..response.data.size).random()])
                     } else {
-                        Log.d("PokemonViewModel", "No se encontró el Pokémon")
+                        Log.d("Packemon", "Falló la petición")
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
-            Log.d("PokemonViewModel", "Petición terminada")
+//            Log.d("PokemonViewModel", "Petición terminada")
             _uiState.value = _uiState.value.copy(
                 isLoading = false,
                 pokemonList = listaAux

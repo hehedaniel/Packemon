@@ -80,7 +80,7 @@ fun PackemonApp(
                     PokemonPulledApaisado(navController, viewModel, packemonUiState, bbddViewModel)
                 } // Pokemon Obtenido
                 composable(route = PackemonScreens.SobreAbiertoCompleto.route){
-                    PackOpenedApaisado(navController, packemonUiState)
+                    PackOpenedApaisado(navController, viewModel , packemonUiState)
                 } // Sobre abierto completo
                 composable(route = PackemonScreens.Pokedex.route){
                     PokedexApaisado(navController, viewModel, bbddViewModel, packemonUiState)
@@ -99,7 +99,7 @@ fun PackemonApp(
                     PokemonPulled(navController, viewModel, packemonUiState, bbddViewModel)
                 } // Pokemon Obtenido
                 composable(route = PackemonScreens.SobreAbiertoCompleto.route){
-                    PackOpened(navController, packemonUiState)
+                    PackOpened(navController, viewModel , packemonUiState)
                 } // Sobre abierto completo
                 composable(route = PackemonScreens.Pokedex.route){
                     Pokedex(navController, viewModel, bbddViewModel, packemonUiState)

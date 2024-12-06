@@ -43,11 +43,10 @@ fun PokemonPulled(
     uiState: PokeUiState,
     bbddViewModel: PackemonBbddViewModel
 ) {
-
     var pokemonMostrar = uiState.pokemonList.getOrNull(uiState.pokemonNumberShow)
     val coroutineScope = rememberCoroutineScope()
     val hayPokemonAnterior = if (uiState.pokemonNumberShow > 0) true else false
-    val isFavState = remember { mutableStateOf(pokemonMostrar?.isFav) }
+    val isFav = remember { mutableStateOf(pokemonMostrar?.isFav) }
 
     if (pokemonMostrar != null) {
         Column(
@@ -57,53 +56,51 @@ fun PokemonPulled(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-
             Text(
                 text = stringResource(id = R.string.poke_capturado),
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier.padding(top = 16.dp)
             )
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
             ) {
                 Text(
                     text = pokemonMostrar.name,
                     style = MaterialTheme.typography.displayMedium,
                     modifier = Modifier
                         .padding(bottom = 8.dp)
-                        .weight(1f) // Deja espacio para la imagen de favorito
                 )
 
-                Image(
-                    painter = painterResource(mostrarImgFav(isFavState.value!!)),
-                    contentDescription = "Favorito",
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clickable {
-                            val favCambiado = !isFavState.value!!
-                            isFavState.value = favCambiado
-
-                            coroutineScope.launch {
-                                bbddViewModel.guardarPokemon(
-                                    PokemonDDBB(
-                                        pokeId = pokemonMostrar.id,
-                                        pokeName = pokemonMostrar.name,
-                                        natioPNBbdd = pokemonMostrar.nationalPokedexNumbers?.get(0) ?: -1,
-                                        pokeImgLarge = pokemonMostrar.images.large,
-                                        pokeSetId = pokemonMostrar.set.id,
-                                        pokeSetName = pokemonMostrar.set.name,
-                                        pokeSetSeries = pokemonMostrar.set.series,
-                                        pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
-                                        pokeSetLogo = pokemonMostrar.set.images.logo,
-                                        isFav = favCambiado
-                                    )
-                                )
-                            }
-
-                            pokemonMostrar.isFav = favCambiado
-                        }
-                )
+//                Image(
+//                    painter = painterResource(mostrarImgFav(isFav.value!!)),
+//                    contentDescription = "Favorito",
+//                    modifier = Modifier
+//                        .size(40.dp)
+//                        .clickable {
+//                            val favCambiado = !isFav.value!!
+//                            isFav.value = favCambiado
+//
+//                            coroutineScope.launch {
+//                                bbddViewModel.guardarPokemon(
+//                                    PokemonDDBB(
+//                                        pokeId = pokemonMostrar.id,
+//                                        pokeName = pokemonMostrar.name,
+//                                        natioPNBbdd = pokemonMostrar.nationalPokedexNumbers?.get(0) ?: -1,
+//                                        pokeImgLarge = pokemonMostrar.images.large,
+//                                        pokeSetId = pokemonMostrar.set.id,
+//                                        pokeSetName = pokemonMostrar.set.name,
+//                                        pokeSetSeries = pokemonMostrar.set.series,
+//                                        pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
+//                                        pokeSetLogo = pokemonMostrar.set.images.logo,
+//                                        isFav = favCambiado
+//                                    )
+//                                )
+//                            }
+//                            pokemonMostrar.isFav = favCambiado
+//                        }
+//                )
             }
 
             AsyncImage(
@@ -149,8 +146,9 @@ fun PokemonPulled(
                                 )
                             )
                         }
+                        isFav.value = false
                         pokemonViewModel.sumarAlContador()
-                        Log.d("PokemonViewModel", uiState.pokemonNumberShow.toString())
+                        pokemonViewModel.pokemonVistos()
                     },
                     modifier = Modifier.padding(start = 8.dp)
                 ) {
@@ -158,7 +156,7 @@ fun PokemonPulled(
                 }
             }
         }
-    } else {
+    } else if (uiState.pokemonVistos){
         navController.navigate(PackemonScreens.SobreAbiertoCompleto.route)
     }
 }

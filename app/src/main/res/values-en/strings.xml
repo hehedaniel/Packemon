@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Buttons -->
+    <string name="abrir_sobre">Open pack</string>
+    <string name="ir_pokedex">Go to Pokédex</string>
+    <string name="ir_sobre">Go to open pack</string>
+    <string name="pokemon_favs">Show favorites</string>
+    <string name="pokedex_mostrar">Show Pokédex</string>
+    <string name="poke_anterior">Previous Pokémon</string>
+    <string name="poke_siguiente">Next Pokémon</string>
+
+    <!-- Others -->
+    <string name="poke_capturado">Pokémon captured</string>
+</resources>

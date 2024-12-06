@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -22,16 +24,15 @@ import com.hermosohermoso.danielmartin.packemon.PokeUiState
 import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
 import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
+import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
 
 @Composable
 fun PackOpened(
     navController: NavHostController,
+    pokemonViewModel: PokemonViewModel,
     uiState: PokeUiState
 ){
-//    Text(
-//        text = uiState.pokemonList.size.toString(),
-//        modifier = Modifier.padding(16.dp)
-//    )
+    pokemonViewModel.pokemonPorVer()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -51,26 +52,34 @@ fun PackOpened(
                 }
             }
         }
-        Button(
-            onClick = {
-                navController.navigate(PackemonScreens.Start.route)
-            },
+        Row (
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            contentPadding = PaddingValues(18.dp, 14.dp)
-        ) {
-            Text(text = stringResource(id = R.string.ir_sobre))
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+
+        ){
+            Button(
+                onClick = {
+                    navController.navigate(PackemonScreens.Start.route)
+                },
+                modifier = Modifier
+//                .fillMaxWidth()
+                    .padding(16.dp),
+                contentPadding = PaddingValues(18.dp, 14.dp)
+            ) {
+                Text(text = stringResource(id = R.string.ir_sobre))
+            }
         }
     }
 }
 
 @Composable
 fun PokemonCardShow(pokemon: PokemonCard) {
-    Log.d("PokemonCardShow", pokemon.name)
+    Log.d("soy yo", pokemon.name)
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(0.3f)
             .padding(8.dp)
     ) {
         AsyncImage(
@@ -78,7 +87,7 @@ fun PokemonCardShow(pokemon: PokemonCard) {
             contentDescription = pokemon.name,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(225.dp)
+//                .height(225.dp)
                 .padding(4.dp)
         )
     }
