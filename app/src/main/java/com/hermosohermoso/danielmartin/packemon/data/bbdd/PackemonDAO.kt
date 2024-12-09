@@ -1,10 +1,11 @@
-package com.hermosohermoso.danielmartin.packemon.bbdd
+package com.hermosohermoso.danielmartin.packemon.data.bbdd
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
+import com.hermosohermoso.danielmartin.packemon.model.PokemonDDBB
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -20,4 +21,7 @@ interface PackemonDAO{
 
    @Query("UPDATE Pokemon SET fav = :isFav WHERE pokeId = :pokeId")
    suspend fun actualizarFavorito(pokeId: String, isFav: Boolean)
+
+   @Delete
+   suspend fun eliminarPokemon(pokemonCard: PokemonDDBB)
 }

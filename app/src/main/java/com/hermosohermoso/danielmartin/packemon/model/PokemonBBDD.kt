@@ -1,4 +1,4 @@
-package com.hermosohermoso.danielmartin.packemon.bbdd
+package com.hermosohermoso.danielmartin.packemon.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -26,13 +26,4 @@ data class PokemonDDBB(
     val pokeSetLogo: String,
     @ColumnInfo(name = "fav")
     val isFav: Boolean
-
-//    @ColumnInfo
-//    val pokeAttack1: String,
-//    @ColumnInfo
-//    val pokeAttack2: String,
-//    @ColumnInfo
-//    val pokeType: String,
-//    @PrimaryKey(autoGenerate = true)
-//    val pokemonBbddId: Int = 0,
 )

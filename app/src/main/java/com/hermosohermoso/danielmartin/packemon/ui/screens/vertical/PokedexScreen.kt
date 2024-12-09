@@ -1,4 +1,4 @@
-package com.hermosohermoso.danielmartin.packemon.data.apaisado
+package com.hermosohermoso.danielmartin.packemon.ui.screens.vertical
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,12 +12,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,14 +35,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.hermosohermoso.danielmartin.packemon.PokeUiState
+import com.hermosohermoso.danielmartin.packemon.model.PokeUiState
 import com.hermosohermoso.danielmartin.packemon.R
-import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
-import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
-import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
+import com.hermosohermoso.danielmartin.packemon.model.PackemonBbddViewModel
+import com.hermosohermoso.danielmartin.packemon.navigation.PackemonScreens
+import com.hermosohermoso.danielmartin.packemon.model.PokemonViewModel
 
 @Composable
-fun PokedexApaisado(
+fun Pokedex(
     navController: NavController,
     viewModel: PokemonViewModel,
     bbddViewModel: PackemonBbddViewModel,
@@ -110,28 +111,33 @@ fun PokedexApaisado(
             verticalArrangement = Arrangement.spacedBy(2.dp)
         ) {
             items(pokemonList) { pokemon ->
-                mostrarPokemonItemApaisado(
+                mostrarPokemonItem(
                     imgPokemon = pokemon.pokeImgLarge,
                     nombrePokemon = pokemon.pokeName,
+                    imgHeight = widthPantalla / pokeGrid,
                     onClick = {
                         viewModel.guardarPokemonMostrar(pokemon)
                         navController.navigate(PackemonScreens.PokemonDatos.route)
-                    },
-                    widthCarta = widthPantalla / pokeGrid
+                    }
                 )
             }
         }
 
-        Row(
+        Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
+                .padding(top = 8.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
         ){
             Button(
                 onClick = { navController.navigate(PackemonScreens.Start.route) },
                 modifier = Modifier
-                    .padding(top = 16.dp)
+                    .padding(top = 16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    MaterialTheme.colorScheme.secondary,
+                    MaterialTheme.colorScheme.onSecondary
+                ),
             ) {
                 Text(text = stringResource(id = R.string.ir_sobre))
             }
@@ -153,17 +159,17 @@ fun PokedexApaisado(
 }
 
 @Composable
-fun mostrarPokemonItemApaisado(
+fun mostrarPokemonItem(
     imgPokemon: String,
     nombrePokemon: String,
+    imgHeight: Dp,
     onClick: () -> Unit,
-    widthCarta: Dp,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
-            .width(widthCarta)
-            .aspectRatio(0.8f)
+            .fillMaxWidth()
+            .aspectRatio(1f)
             .clickable { onClick() }
             .padding(2.dp)
     ) {
@@ -172,6 +178,7 @@ fun mostrarPokemonItemApaisado(
             contentDescription = nombrePokemon,
             modifier = Modifier
                 .fillMaxWidth()
+                .height(imgHeight)
                 .padding(4.dp)
         )
     }

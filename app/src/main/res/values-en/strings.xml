@@ -8,7 +8,12 @@
     <string name="pokedex_mostrar">Show Pokédex</string>
     <string name="poke_anterior">Previous Pokémon</string>
     <string name="poke_siguiente">Next Pokémon</string>
-
+    <string name="liberar">Pokemon release</string>
+    <string name="rechazar">Back</string>
     <!-- Others -->
     <string name="poke_capturado">Pokémon captured</string>
+
+    <!--  Dialgo  -->
+    <string name="titulo">Confirm Release</string>
+    <string name="subtitulo">Are you sure you want to release this Pokémon?</string>
 </resources>

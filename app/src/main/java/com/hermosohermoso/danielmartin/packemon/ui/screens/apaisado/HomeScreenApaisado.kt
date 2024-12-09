@@ -1,4 +1,4 @@
-package com.hermosohermoso.danielmartin.packemon.data.apaisado
+package com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -21,11 +21,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.hermosohermoso.danielmartin.packemon.PokeUiState
+import com.hermosohermoso.danielmartin.packemon.model.PokeUiState
 import com.hermosohermoso.danielmartin.packemon.R
-import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
-import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+import com.hermosohermoso.danielmartin.packemon.navigation.PackemonScreens
+import com.hermosohermoso.danielmartin.packemon.model.PokemonViewModel
 
 //Pantalla principal con:
 //  El sobre cerrado
@@ -72,7 +71,6 @@ fun HomeScreenApaisado(
                     navController.navigate(PackemonScreens.SobreAbierto.route)
                 },
                 modifier = Modifier
-                    .width(widthPantalla / 6)
                     .padding(bottom = 12.dp),
                 colors = ButtonDefaults.buttonColors(
                     MaterialTheme.colorScheme.secondary,
@@ -85,7 +83,6 @@ fun HomeScreenApaisado(
             Button(
                 onClick = { navController.navigate(PackemonScreens.Pokedex.route) },
                 modifier = Modifier
-                    .width(widthPantalla / 7)
                     .padding(bottom = 24.dp),
                 colors = ButtonDefaults.buttonColors(
                     MaterialTheme.colorScheme.primary,

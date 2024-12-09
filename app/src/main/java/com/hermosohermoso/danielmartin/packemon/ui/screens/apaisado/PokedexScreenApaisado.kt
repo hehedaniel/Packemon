@@ -1,6 +1,5 @@
-package com.hermosohermoso.danielmartin.packemon.data.vertical
+package com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,9 +9,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -36,19 +35,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.hermosohermoso.danielmartin.packemon.PokeUiState
+import com.hermosohermoso.danielmartin.packemon.model.PokeUiState
 import com.hermosohermoso.danielmartin.packemon.R
-import com.hermosohermoso.danielmartin.packemon.api.Attack
-import com.hermosohermoso.danielmartin.packemon.api.CardImages
-import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
-import com.hermosohermoso.danielmartin.packemon.api.SetImages
-import com.hermosohermoso.danielmartin.packemon.api.SetInfo
-import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
-import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
-import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
+import com.hermosohermoso.danielmartin.packemon.model.PackemonBbddViewModel
+import com.hermosohermoso.danielmartin.packemon.navigation.PackemonScreens
+import com.hermosohermoso.danielmartin.packemon.model.PokemonViewModel
 
 @Composable
-fun Pokedex(
+fun PokedexApaisado(
     navController: NavController,
     viewModel: PokemonViewModel,
     bbddViewModel: PackemonBbddViewModel,
@@ -92,55 +86,22 @@ fun Pokedex(
             .padding(16.dp)
     ) {
         // Imagen del icono alineado a la derecha
-        Box(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 8.dp),
-            contentAlignment = Alignment.TopEnd
-        ) {
-            Icon(
-                painter = painterResource(id = idDrawable),
-                contentDescription = stringResource(id = R.string.dos),
-                modifier = Modifier
-                    .size(48.dp)
-                    .clickable {
-                        viewModel.cambiarNumPokemon()
-                    }
-            )
-        }
-
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(pokeGrid),
-            modifier = Modifier.weight(1f),
-            contentPadding = PaddingValues(2.dp),
-            horizontalArrangement = Arrangement.spacedBy(2.dp),
-            verticalArrangement = Arrangement.spacedBy(2.dp)
-        ) {
-            items(pokemonList) { pokemon ->
-                mostrarPokemonItem(
-                    imgPokemon = pokemon.pokeImgLarge,
-                    nombrePokemon = pokemon.pokeName,
-                    imgHeight = widthPantalla / pokeGrid,
-                    onClick = {
-                        viewModel.guardarPokemonMostrar(pokemon)
-                        navController.navigate(PackemonScreens.PokemonDatos.route)
-                    }
-                )
-            }
-        }
-
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
+            Text(
+                text = "Total: ${pokemonList.size}",
+                modifier = Modifier
+                    .padding(start = 16.dp)
+            )
+
             Button(
                 onClick = { navController.navigate(PackemonScreens.Start.route) },
-                modifier = Modifier
-//                .fillMaxWidth()
-                    .padding(top = 16.dp),
+                modifier = Modifier,
                 colors = ButtonDefaults.buttonColors(
                     MaterialTheme.colorScheme.secondary,
                     MaterialTheme.colorScheme.onSecondary
@@ -153,8 +114,6 @@ fun Pokedex(
                     mostrarFavoritos = !mostrarFavoritos
                 },
                 modifier = Modifier
-//                .fillMaxWidth()
-                    .padding(top = 16.dp)
             ) {
                 if(!mostrarFavoritos){
                     Text(text = stringResource(id = R.string.pokemon_favs))
@@ -162,22 +121,53 @@ fun Pokedex(
                     Text(text = stringResource(id = R.string.pokedex_mostrar))
                 }
             }
+
+            Icon(
+                painter = painterResource(id = idDrawable),
+                contentDescription = stringResource(id = R.string.dos),
+                modifier = Modifier
+                    .size(48.dp)
+                    .clickable {
+                        viewModel.cambiarNumPokemon()
+                    }
+            )
+        }
+
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(pokeGrid),
+            modifier = Modifier.weight(1f),
+            contentPadding = PaddingValues(2.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
+            verticalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            items(pokemonList) { pokemon ->
+                mostrarPokemonItemApaisado(
+                    imgPokemon = pokemon.pokeImgLarge,
+                    nombrePokemon = pokemon.pokeName,
+                    onClick = {
+                        viewModel.guardarPokemonMostrar(pokemon)
+                        navController.navigate(PackemonScreens.PokemonDatos.route)
+                    },
+                    widthCarta = widthPantalla / pokeGrid
+                )
+            }
         }
     }
 }
 
 @Composable
-fun mostrarPokemonItem(
+fun mostrarPokemonItemApaisado(
     imgPokemon: String,
     nombrePokemon: String,
-    imgHeight: Dp,
     onClick: () -> Unit,
+    widthCarta: Dp,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
-            .fillMaxWidth()
-            .aspectRatio(1f)
+            .width(widthCarta)
+            .aspectRatio(0.8f)
             .clickable { onClick() }
             .padding(2.dp)
     ) {
@@ -186,7 +176,6 @@ fun mostrarPokemonItem(
             contentDescription = nombrePokemon,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(imgHeight)
                 .padding(4.dp)
         )
     }

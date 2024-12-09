@@ -1,34 +1,19 @@
-package com.hermosohermoso.danielmartin.packemon.ui
+package com.hermosohermoso.danielmartin.packemon.model
 
 import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hermosohermoso.danielmartin.packemon.PokeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.io.IOException
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.hermosohermoso.danielmartin.packemon.api.PackemonApi
-import com.hermosohermoso.danielmartin.packemon.api.PokemonApiService
-import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
-import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonApplication
-import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
-import com.hermosohermoso.danielmartin.packemon.bbdd.PokemonDDBB
+import com.hermosohermoso.danielmartin.packemon.data.api.PackemonApi
+import com.hermosohermoso.danielmartin.packemon.data.bbdd.PackemonApplication
 import com.hermosohermoso.danielmartin.packemon.preferences.PackemonPreferences
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 class PokemonViewModel(
     private val PackemonPreferences: PackemonPreferences
@@ -56,7 +41,7 @@ class PokemonViewModel(
 
             while (listaAux.size < 6) {
                 try {
-                    val randomNumber = (1..251).random()
+                    val randomNumber = (1..999).random()
 
                     val query = "nationalPokedexNumbers:[$randomNumber TO $randomNumber]"
                     val response = PackemonApi.retrofitService.getPokemonByNationalPokedexNumber(query)
@@ -70,7 +55,6 @@ class PokemonViewModel(
                     e.printStackTrace()
                 }
             }
-//            Log.d("PokemonViewModel", "Petición terminada")
             _uiState.value = _uiState.value.copy(
                 isLoading = false,
                 pokemonList = listaAux

@@ -1,6 +1,6 @@
 @file:Suppress("PLUGIN_IS_NOT_ENABLED")
 
-package com.hermosohermoso.danielmartin.packemon.api
+package com.hermosohermoso.danielmartin.packemon.model
 
 import kotlinx.serialization.Serializable
 

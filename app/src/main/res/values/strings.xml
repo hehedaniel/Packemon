@@ -18,6 +18,12 @@
     <string name="pokedex_mostrar">Mostrar pokedex</string>
     <string name="poke_anterior">Pokemon anterior</string>
     <string name="poke_siguiente">Siguiente pokemon</string>
+    <string name="liberar">Liberar pokemon</string>
+    <string name="rechazar">Volver</string>
+
+    <!-- Texto dialogo -->
+    <string name="titulo">Confirma la liberación</string>
+    <string name="subtitulo">¿Estás seguro de que quieres liberar este Pokémon?</string>
 
     <!--  Iconos preferencias  -->
     <string name="dos" translatable="false">dos</string>

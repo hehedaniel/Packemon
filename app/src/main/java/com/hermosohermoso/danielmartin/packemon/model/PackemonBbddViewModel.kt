@@ -1,4 +1,4 @@
-package com.hermosohermoso.danielmartin.packemon.bbdd
+package com.hermosohermoso.danielmartin.packemon.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import kotlinx.coroutines.flow.Flow
+import com.hermosohermoso.danielmartin.packemon.data.bbdd.PackemonApplication
+import com.hermosohermoso.danielmartin.packemon.data.bbdd.PackemonDAO
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class PackemonBbddViewModel (private val packemonDao: PackemonDAO): ViewModel(){
@@ -43,6 +43,12 @@ private val _pokemonList = MutableStateFlow<List<PokemonDDBB>>(emptyList())
     suspend fun actualizarFavorito(pokeId: String, isFav: Boolean) {
         viewModelScope.launch {
             packemonDao.actualizarFavorito(pokeId, isFav)
+        }
+    }
+
+    suspend fun eliminarPokemon(pokemonCard: PokemonDDBB) {
+        viewModelScope.launch {
+            packemonDao.eliminarPokemon(pokemonCard)
         }
     }
 

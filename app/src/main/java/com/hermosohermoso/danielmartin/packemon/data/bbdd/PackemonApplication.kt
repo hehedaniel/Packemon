@@ -1,4 +1,4 @@
-package com.hermosohermoso.danielmartin.packemon.bbdd
+package com.hermosohermoso.danielmartin.packemon.data.bbdd
 
 import android.app.Application
 import android.content.Context

@@ -1,7 +1,4 @@
-package com.hermosohermoso.danielmartin.packemon;
-
-import com.hermosohermoso.danielmartin.packemon.api.PokemonCard
-import com.hermosohermoso.danielmartin.packemon.bbdd.PokemonDDBB
+package com.hermosohermoso.danielmartin.packemon.model;
 
 /*
 Esta clase debe tener las variables importantes del programa,

@@ -1,12 +1,9 @@
-package com.hermosohermoso.danielmartin.packemon.api
+package com.hermosohermoso.danielmartin.packemon.data.api
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
+import com.hermosohermoso.danielmartin.packemon.model.PokemonResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Query
 
 private val retrofit = Retrofit.Builder()

@@ -1,10 +1,8 @@
-package com.hermosohermoso.danielmartin.packemon
+package com.hermosohermoso.danielmartin.packemon.navigation
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -28,23 +26,23 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.hermosohermoso.danielmartin.packemon.bbdd.PackemonBbddViewModel
-import com.hermosohermoso.danielmartin.packemon.data.vertical.HomeScreen
-import com.hermosohermoso.danielmartin.packemon.data.apaisado.HomeScreenApaisado
-import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpenedApaisado
-import com.hermosohermoso.danielmartin.packemon.data.apaisado.PackOpeningScreenApaisado
-import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokedexApaisado
-import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokemonDatosScreenApaisado
-import com.hermosohermoso.danielmartin.packemon.data.apaisado.PokemonPulledApaisado
-import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpened
-import com.hermosohermoso.danielmartin.packemon.data.vertical.PackOpeningScreen
-import com.hermosohermoso.danielmartin.packemon.data.vertical.Pokedex
-import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonDatosScreen
-import com.hermosohermoso.danielmartin.packemon.data.vertical.PokemonPulled
-import com.hermosohermoso.danielmartin.packemon.model.PackemonScreens
-import com.hermosohermoso.danielmartin.packemon.ui.PokemonViewModel
+import com.hermosohermoso.danielmartin.packemon.model.PackemonBbddViewModel
+import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.HomeScreen
+import com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado.HomeScreenApaisado
+import com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado.PackOpenedApaisado
+import com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado.PackOpeningScreenApaisado
+import com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado.PokedexApaisado
+import com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado.PokemonDatosScreenApaisado
+import com.hermosohermoso.danielmartin.packemon.ui.screens.apaisado.PokemonPulledApaisado
+import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.PackOpened
+import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.PackOpeningScreen
+import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.Pokedex
+import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.PokemonDatosScreen
+import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.PokemonPulled
+import com.hermosohermoso.danielmartin.packemon.model.PokemonViewModel
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.ui.res.stringResource
+import com.hermosohermoso.danielmartin.packemon.R
 
 @Composable
 fun PackemonApp(
@@ -128,11 +126,11 @@ fun PokeAppTopBar(
 
             ) {
                 Image(
-                    painter = painterResource(R.drawable.logopackemon),
+                    painter = painterResource(R.drawable.packemon_logocompleto),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(500.dp)
                         .padding(bottom = 12.dp, top = 8.dp)
+                        .fillMaxSize()
                 )
             }
         },

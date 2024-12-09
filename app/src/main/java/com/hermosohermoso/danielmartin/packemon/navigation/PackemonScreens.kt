@@ -1,4 +1,4 @@
-package com.hermosohermoso.danielmartin.packemon.model
+package com.hermosohermoso.danielmartin.packemon.navigation
 
 import com.hermosohermoso.danielmartin.packemon.R
 
