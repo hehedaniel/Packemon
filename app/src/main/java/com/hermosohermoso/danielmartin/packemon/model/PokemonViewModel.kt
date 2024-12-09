@@ -102,6 +102,9 @@ class PokemonViewModel(
                 3 -> 4
                 else -> 1
             }
+
+            PackemonPreferences.cambiarNumPokemon(n)
+
             _uiState.value = _uiState.value.copy(
                 num_pokemon_fila = n
             )

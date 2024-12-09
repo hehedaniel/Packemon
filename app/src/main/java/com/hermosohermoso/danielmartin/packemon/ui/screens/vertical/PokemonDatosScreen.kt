@@ -43,6 +43,7 @@ fun PokemonDatosScreen(
     // Recogemos el estado de los datos de Pokémon desde el ViewModel
     val pokemonMostrar = viewModel.obtenerPokemonMostrar()
     val coroutineScope = rememberCoroutineScope()
+    val openAlertDialog = remember { mutableStateOf(false) }
 
     // Si no hay un Pokémon seleccionado, mostramos un mensaje
     if (pokemonMostrar == null) {
@@ -130,12 +131,7 @@ fun PokemonDatosScreen(
                 }
                 Button(
                     onClick = {
-                        coroutineScope.launch {
-                            bbddViewModel.eliminarPokemon(
-                                pokemonMostrar
-                            )
-                        }
-                        navController.navigate(PackemonScreens.Pokedex.route)
+                        openAlertDialog.value = true
                     },
                     modifier = Modifier,
                     colors = ButtonDefaults.buttonColors(

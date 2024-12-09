@@ -63,35 +63,6 @@ fun PokemonPulled(
                     modifier = Modifier
                         .padding(bottom = 8.dp)
                 )
-
-//                Image(
-//                    painter = painterResource(mostrarImgFav(isFav.value!!)),
-//                    contentDescription = "Favorito",
-//                    modifier = Modifier
-//                        .size(40.dp)
-//                        .clickable {
-//                            val favCambiado = !isFav.value!!
-//                            isFav.value = favCambiado
-//
-//                            coroutineScope.launch {
-//                                bbddViewModel.guardarPokemon(
-//                                    PokemonDDBB(
-//                                        pokeId = pokemonMostrar.id,
-//                                        pokeName = pokemonMostrar.name,
-//                                        natioPNBbdd = pokemonMostrar.nationalPokedexNumbers?.get(0) ?: -1,
-//                                        pokeImgLarge = pokemonMostrar.images.large,
-//                                        pokeSetId = pokemonMostrar.set.id,
-//                                        pokeSetName = pokemonMostrar.set.name,
-//                                        pokeSetSeries = pokemonMostrar.set.series,
-//                                        pokeSetReleaseDate = pokemonMostrar.set.releaseDate,
-//                                        pokeSetLogo = pokemonMostrar.set.images.logo,
-//                                        isFav = favCambiado
-//                                    )
-//                                )
-//                            }
-//                            pokemonMostrar.isFav = favCambiado
-//                        }
-//                )
             }
 
             AsyncImage(

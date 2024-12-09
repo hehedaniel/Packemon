@@ -25,23 +25,6 @@ fun PackOpeningScreen(
     pokemonViewModel: PokemonViewModel
 ) {
 
-//    if (uiState.isLoading) {
-//        pokemonViewModel.pokemonPorVer()
-//        Column(
-//            modifier = Modifier.fillMaxSize(),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.Center
-//        ) {
-//            Image(
-//                painter = painterResource(R.drawable.sobre_abierto),
-//                contentDescription = "Sobre abierto",
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .weight(0.5f)
-//            )
-//        }
-
-
     Box(
         modifier = Modifier.fillMaxSize()
     ) {

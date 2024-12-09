@@ -9,16 +9,16 @@ import kotlinx.coroutines.flow.map
 
 class PackemonPreferences (private val dataStore: DataStore<Preferences>){
     private companion object{
-        val NUM_POKEMON = intPreferencesKey("NUMPOKE")
+        val NUM_POKEMON_FILA_MOSTRAR = intPreferencesKey("NUMPOKE")
     }
 
     val num_pokemon: Flow<Int> = dataStore.data.map {
-        preferences -> preferences[NUM_POKEMON] ?: 1
+        preferences -> preferences[NUM_POKEMON_FILA_MOSTRAR] ?: 1
     }
 
     suspend fun cambiarNumPokemon(numPokemon: Int){
         dataStore.edit {
-            preferences -> preferences[NUM_POKEMON] = numPokemon
+            preferences -> preferences[NUM_POKEMON_FILA_MOSTRAR] = numPokemon
         }
     }
 }

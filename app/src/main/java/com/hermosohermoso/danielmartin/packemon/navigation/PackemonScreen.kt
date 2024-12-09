@@ -41,6 +41,9 @@ import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.PokemonDatos
 import com.hermosohermoso.danielmartin.packemon.ui.screens.vertical.PokemonPulled
 import com.hermosohermoso.danielmartin.packemon.model.PokemonViewModel
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.ui.res.stringResource
 import com.hermosohermoso.danielmartin.packemon.R
 
@@ -157,4 +160,40 @@ fun mostrarImgFav(estado: Boolean): Int{
     } else {
         return R.drawable.favorito
     }
+}
+
+@Composable
+fun AlertDialogExample(
+    onDismissRequest: () -> Unit,
+    onConfirmation: () -> Unit,
+) {
+    AlertDialog(
+        title = {
+            Text(stringResource(R.string.titulo))
+        },
+        text = {
+            Text(stringResource(R.string.subtitulo))
+        },
+        onDismissRequest = {
+            onDismissRequest()
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onConfirmation()
+                }
+            ) {
+                Text(stringResource(R.string.liberar))
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    onDismissRequest()
+                }
+            ) {
+                Text(stringResource(R.string.rechazar))
+            }
+        }
+    )
 }

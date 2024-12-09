@@ -36,6 +36,8 @@ import com.hermosohermoso.danielmartin.packemon.R
 import com.hermosohermoso.danielmartin.packemon.model.PackemonBbddViewModel
 import com.hermosohermoso.danielmartin.packemon.navigation.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.model.PokemonViewModel
+import com.hermosohermoso.danielmartin.packemon.navigation.AlertDialogExample
+import com.hermosohermoso.danielmartin.packemon.navigation.mostrarImgFav
 import kotlinx.coroutines.launch
 
 @Composable
@@ -150,13 +152,7 @@ fun PokemonDatosScreenApaisado(
                     }
                     Button(
                         onClick = {
-//                            coroutineScope.launch {
-//                                bbddViewModel.eliminarPokemon(
-//                                    pokemonMostrar
-//                                )
-//                            }
                             openAlertDialog.value = true
-//                            navController.navigate(PackemonScreens.Pokedex.route)
                         },
                         modifier = Modifier,
                         colors = ButtonDefaults.buttonColors(
@@ -185,50 +181,5 @@ fun PokemonDatosScreenApaisado(
                 navController.navigate(PackemonScreens.Pokedex.route)
             },
         )
-    }
-}
-
-@Composable
-fun AlertDialogExample(
-    onDismissRequest: () -> Unit,
-    onConfirmation: () -> Unit,
-) {
-    AlertDialog(
-        title = {
-            Text(stringResource(R.string.titulo))
-        },
-        text = {
-            Text(stringResource(R.string.subtitulo))
-        },
-        onDismissRequest = {
-            onDismissRequest()
-        },
-        confirmButton = {
-            TextButton(
-                onClick = {
-                    onConfirmation()
-                }
-            ) {
-                Text(stringResource(R.string.liberar))
-            }
-        },
-        dismissButton = {
-            TextButton(
-                onClick = {
-                    onDismissRequest()
-                }
-            ) {
-                Text(stringResource(R.string.rechazar))
-            }
-        }
-    )
-}
-
-
-fun mostrarImgFav(estado: Boolean): Int{
-    if (estado == true) {
-        return R.drawable.favoritomarcado
-    } else {
-        return R.drawable.favorito
     }
 }
