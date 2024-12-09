@@ -24,8 +24,6 @@ fun PackOpeningScreenApaisado(
     uiState: PokeUiState,
     pokemonViewModel: PokemonViewModel
 ) {
-//    Text("Pack opening screen")
-
     Box(modifier = Modifier.fillMaxSize()){
         if (uiState.isLoading) {
             Box(

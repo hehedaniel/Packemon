@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -36,7 +37,6 @@ fun PokemonPulledApaisado(
     uiState: PokeUiState,
     bbddViewModel: PackemonBbddViewModel
 ) {
-    val widthPantalla = LocalConfiguration.current.screenWidthDp.dp
     val pokemonMostrar = uiState.pokemonList.getOrNull(uiState.pokemonNumberShow)
     val coroutineScope = rememberCoroutineScope()
     val hayPokemonAnterior = if (uiState.pokemonNumberShow > 0) true else false
@@ -74,7 +74,18 @@ fun PokemonPulledApaisado(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(stringResource(R.string.poke_capturado))
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = pokemonMostrar.name,
+                        style = MaterialTheme.typography.displayLarge,
+                        modifier = Modifier
+                            .padding(bottom = 8.dp)
+                    )
+                }
 
                 Button(
                     onClick = {

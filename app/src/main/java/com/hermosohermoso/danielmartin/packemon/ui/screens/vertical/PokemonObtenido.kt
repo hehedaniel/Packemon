@@ -47,11 +47,6 @@ fun PokemonPulled(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = stringResource(id = R.string.poke_capturado),
-                style = MaterialTheme.typography.displaySmall,
-                modifier = Modifier.padding(top = 16.dp)
-            )
             Row(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -59,7 +54,7 @@ fun PokemonPulled(
             ) {
                 Text(
                     text = pokemonMostrar.name,
-                    style = MaterialTheme.typography.displayMedium,
+                    style = MaterialTheme.typography.displayLarge,
                     modifier = Modifier
                         .padding(bottom = 8.dp)
                 )
