@@ -85,13 +85,20 @@ fun Pokedex(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Imagen del icono alineado a la derecha
-        Box(
+
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 8.dp),
-            contentAlignment = Alignment.TopEnd
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
+            Text(
+                text = "Total: ${pokemonList.size}",
+                modifier = Modifier
+                    .padding(start = 16.dp)
+            )
+
             Icon(
                 painter = painterResource(id = idDrawable),
                 contentDescription = stringResource(id = R.string.dos),
