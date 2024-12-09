@@ -82,7 +82,7 @@ fun PokemonPulled(
                     modifier = Modifier.padding(end = 8.dp),
                     enabled = hayPokemonAnterior
                 ) {
-                    Text("Anterior Pokémon")
+                    Text(stringResource(R.string.poke_anterior))
                 }
 
                 Button(
@@ -109,7 +109,7 @@ fun PokemonPulled(
                     },
                     modifier = Modifier.padding(start = 8.dp)
                 ) {
-                    Text("Siguiente Pokémon")
+                    Text(stringResource(R.string.poke_siguiente))
                 }
             }
         }

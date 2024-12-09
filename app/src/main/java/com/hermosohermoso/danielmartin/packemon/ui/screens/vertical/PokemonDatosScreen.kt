@@ -31,6 +31,7 @@ import com.hermosohermoso.danielmartin.packemon.model.PackemonBbddViewModel
 import com.hermosohermoso.danielmartin.packemon.navigation.PackemonScreens
 import com.hermosohermoso.danielmartin.packemon.navigation.mostrarImgFav
 import com.hermosohermoso.danielmartin.packemon.model.PokemonViewModel
+import com.hermosohermoso.danielmartin.packemon.navigation.AlertDialogExample
 import kotlinx.coroutines.launch
 
 @Composable
@@ -144,5 +145,20 @@ fun PokemonDatosScreen(
             }
 
         }
+    }
+
+    if (openAlertDialog.value) {
+        AlertDialogExample(
+            onDismissRequest = {
+                openAlertDialog.value = false
+            },
+            onConfirmation = {
+                coroutineScope.launch {
+                    bbddViewModel.eliminarPokemon(pokemonMostrar)
+                }
+                openAlertDialog.value = false
+                navController.navigate(PackemonScreens.Pokedex.route)
+            },
+        )
     }
 }
