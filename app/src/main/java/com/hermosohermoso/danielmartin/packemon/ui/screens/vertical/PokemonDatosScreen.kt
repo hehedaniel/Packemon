@@ -39,14 +39,13 @@ fun PokemonDatosScreen(
     navController: NavController,
     viewModel: PokemonViewModel,
     bbddViewModel: PackemonBbddViewModel,
-    modifier: Modifier = Modifier
 ) {
-    // Recogemos el estado de los datos de Pokémon desde el ViewModel
+    // Recogemos el estado de los datos de Pokemon desde el ViewModel
     val pokemonMostrar = viewModel.obtenerPokemonMostrar()
     val coroutineScope = rememberCoroutineScope()
     val openAlertDialog = remember { mutableStateOf(false) }
 
-    // Si no hay un Pokémon seleccionado, mostramos un mensaje
+    // Si no hay un Pokémon seleccionado, mostramos un mesaje
     if (pokemonMostrar == null) {
         Text(
             text = "Selecciona un Pokémon",
@@ -91,6 +90,7 @@ fun PokemonDatosScreen(
             AsyncImage(
                 model = pokemonMostrar.pokeImgLarge,
                 contentDescription = pokemonMostrar.pokeName,
+                placeholder = painterResource(R.drawable.placeholder_pokeball),
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 16.dp)
@@ -104,7 +104,7 @@ fun PokemonDatosScreen(
             )
 
             Text(
-                text = "Release Date: ${pokemonMostrar.pokeSetReleaseDate}",
+                text = stringResource(R.string.fecha_Salida) + pokemonMostrar.pokeSetReleaseDate,
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier
             )

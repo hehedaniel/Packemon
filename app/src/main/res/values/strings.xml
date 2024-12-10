@@ -33,5 +33,6 @@
 
 
     <string name="poke_capturado">Pokemon capturado</string>
+    <string name="fecha_Salida">Release Date:</string>
 
 </resources>

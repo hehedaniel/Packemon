@@ -79,6 +79,7 @@ fun PokemonDatosScreenApaisado(
         AsyncImage(
             model = pokemonMostrar.pokeImgLarge,
             contentDescription = pokemonMostrar.pokeName,
+            placeholder = painterResource(R.drawable.placeholder_pokeball),
             modifier = Modifier
                 .weight(1f)
                 .padding(end = 16.dp)

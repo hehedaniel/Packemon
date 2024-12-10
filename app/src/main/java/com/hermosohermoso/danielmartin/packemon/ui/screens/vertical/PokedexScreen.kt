@@ -183,6 +183,7 @@ fun mostrarPokemonItem(
         AsyncImage(
             model = imgPokemon,
             contentDescription = nombrePokemon,
+            placeholder = painterResource(R.drawable.placeholder_pokeball),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(imgHeight)

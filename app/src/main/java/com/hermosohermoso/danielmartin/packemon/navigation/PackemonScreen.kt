@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -118,7 +119,6 @@ fun PackemonApp(
 fun PokeAppTopBar(
     canNavigateBack: Boolean,
     navigateUp: () -> Unit,
-    modifier: Modifier = Modifier
 ) {
     TopAppBar(
         title = {
@@ -129,10 +129,10 @@ fun PokeAppTopBar(
 
             ) {
                 Image(
-                    painter = painterResource(R.drawable.packemon_logocompleto),
+                    painter = painterResource(R.drawable.logocompleto),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(bottom = 12.dp, top = 8.dp)
+                        .padding(bottom = 4.dp, top = 8.dp)
                         .fillMaxSize()
                 )
             }
@@ -144,7 +144,7 @@ fun PokeAppTopBar(
             if (canNavigateBack) {
                 IconButton(onClick = navigateUp) {
                     Icon(
-                        imageVector = Icons.Filled.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.back_button)
                     )
                 }
@@ -158,7 +158,7 @@ fun mostrarImgFav(estado: Boolean): Int{
     if (estado == true) {
         return R.drawable.favoritomarcado
     } else {
-        return R.drawable.favorito
+        return R.drawable.strella
     }
 }
 

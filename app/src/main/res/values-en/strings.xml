@@ -16,4 +16,7 @@
     <!--  Dialgo  -->
     <string name="titulo">Confirm Release</string>
     <string name="subtitulo">Are you sure you want to release this Pokémon?</string>
+
+    <string name="fecha_Salida">Fecha de salida:</string>
+
 </resources>
