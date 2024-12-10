@@ -66,7 +66,7 @@ fun PokemonPulled(
                 contentDescription = pokemonMostrar.name,
                 placeholder = painterResource(R.drawable.placeholder_pokeball),
                 modifier = Modifier
-                    .fillMaxWidth(0.7f)
+                    .fillMaxWidth(0.8f)
                     .padding(bottom = 8.dp)
             )
 
